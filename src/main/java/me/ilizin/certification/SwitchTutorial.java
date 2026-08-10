@@ -1,5 +1,10 @@
 package me.ilizin.certification;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
+import static javax.swing.DropMode.ON;
+
 public class SwitchTutorial {
 
     public void part1() {
@@ -155,7 +160,7 @@ public class SwitchTutorial {
          2. Every switch label is associated with either a single expression statement or single a code block
          3. The switch statement breaks automatically after
             the expression or the block executes. It is valid to write a break statement in the code block but it is redundant
-         4. Multiple case values in the same case label: The new syntax has only one way to allow multiple values to be associated with a case block as shown in this line above: case 2, 3 -> System.out.println("Two or three arguments");.
+         4. The new syntax has only one way to allow multiple values to be associated with a case block.
          5. Cannot mix old and new syntax in the same switch statement.
          */
 
@@ -170,7 +175,44 @@ public class SwitchTutorial {
             case 2, 3 -> System.out.println("2 or 3");
             //cannot do this
             //case 4 -> case 5 -> System.out.println("Four or five arguments");//invalid
+        }
+    }
 
-            //cannot mix -> and : in the same switch
+    public void part4 () {
+        // Enums are used very often in a switch statement.
+
+        DayOfWeek dow = LocalDate.now().getDayOfWeek();
+
+         switch(dow) {
+             case MONDAY:
+                 System.out.println("MONDAY");
+                 break;
+
+             // Prior to Java 21, the case statements could only use constant without the enum name
+             // To following will cause a compilation error.
+             case DayOfWeek.TUESDAY:
+                 System.out.println("TUESDAY");
+                 break;
+             default:
+                 System.out.println("ANOTHER DAY");
+         }
+        dow = DayOfWeek.THURSDAY; // It prints SAT/SUN
+        switch(dow){
+            case MONDAY, TUESDAY -> System.out.println("MON/TUE");
+            case WEDNESDAY, FRIDAY -> System.out.println("WED - FRI");
+            default -> System.out.println("SAT/SUN");
+        }
+
+        dow = DayOfWeek.THURSDAY; // It prints SAT/SUN
+        switch(dow){
+            // TUESDAY is just a label applied to the print statement.
+            case MONDAY: TUESDAY: System.out.println("MON/TUE"); break;
+            case WEDNESDAY: FRIDAY: System.out.println("WED - FRI");
+            default : System.out.println("SAT/SUN");
+        }
+    }
+
+    public void part5 () {
+        
     }
 }

@@ -9,4 +9,10 @@ public class SwitchTutorialTest {
         SwitchTutorial switchTutorial = new SwitchTutorial();
         switchTutorial.part1();
     }
+
+    @Test
+    public void part4 () {
+        SwitchTutorial switchTutorial = new SwitchTutorial();
+        switchTutorial.part4();
+    }
 }
