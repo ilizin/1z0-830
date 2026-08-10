@@ -69,15 +69,44 @@ public class SwitchTutorial {
                 System.out.println("1000");
         }
 
-        // Java does not impose any particular order for the case statements and the default block
-        // (except in special situations involving null and pattern matching, which I will talk about later).
-        // Thus, although it is customary to have the default block at the end of a switch block, you can have it even
-        // at the beginning. Similarly, Java does not care about the ordering of the case labels.
+        // Java does not impose any particular order for the case and the default block,
+        // except in special situations involving null and pattern matching.
+        // It's common to have the default block at the end of a switch block, but you can have it
+        // at the beginning also. Case and default blocks order in combination
+        // with the use of the break statement determines the case block that get executed.
 
-        b2 = 20;
+        // It prints:
+        // default
+        // 20
+        b2 = 10;
         switch (b2) {
             default : System.out.println("default");
             case 20 : System.out.println("20");
+        }
+
+        // the break statement is optional.
+        // This is called "fall through" behavior
+        // The control entered at the block labelled case 0, and executed all the other switch blocks
+        int c = 0;
+        switch (c) {  //switch block starts here
+            case 0 : System.out.println("0");
+            case 1 : System.out.println("1");
+            case 2 : System.out.println("2");
+            default : System.out.println("default");
+        }
+
+        // The code blocks associated with the switch labels are called switch blocks.
+        // In a switch statement written using the old syntax
+        // the switch block might be empty, it could contain zero or more "expression statements", it could contain zero or more code blocks,
+        // or it may throw an exception.
+        int i = 0;
+        switch(i) {
+            case 0 : i++; //single expression statement
+            case 1 : i++;i++; //multiple expression statements
+            case 2 : { int w = 0; w++; } // single code block
+            case 3 :  { int w = 0; w++; }  { int w = 0; w++; } // multiple code blocks
+            case 4: //empty
+            case 5: throw new RuntimeException("Invalid value for i");
         }
 
     }
@@ -118,5 +147,30 @@ public class SwitchTutorial {
         } catch (NullPointerException ex) {
             System.out.println("NullPointerException was thrown");
         }
+    }
+
+    public void part3 () {
+        /* There is a new syntax available since Java 14 , Here are a few points
+         1. Here are a few points
+         2. Every switch label is associated with either a single expression statement or single a code block
+         3. The switch statement breaks automatically after
+            the expression or the block executes. It is valid to write a break statement in the code block but it is redundant
+         4. Multiple case values in the same case label: The new syntax has only one way to allow multiple values to be associated with a case block as shown in this line above: case 2, 3 -> System.out.println("Two or three arguments");.
+         5. Cannot mix old and new syntax in the same switch statement.
+         */
+
+        int i = 0;
+        switch(i) {
+            case 0 -> System.out.println("0");
+            //break; //invalid only single expression statement or single a code block are allowed
+            case 1 -> {
+                System.out.println("1");
+                break; //valid, but redundant
+            } //enclosing code within { } is optional
+            case 2, 3 -> System.out.println("2 or 3");
+            //cannot do this
+            //case 4 -> case 5 -> System.out.println("Four or five arguments");//invalid
+
+            //cannot mix -> and : in the same switch
     }
 }
