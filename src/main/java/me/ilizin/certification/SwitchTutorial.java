@@ -3,8 +3,6 @@ package me.ilizin.certification;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-import static javax.swing.DropMode.ON;
-
 public class SwitchTutorial {
 
     public void part1() {
@@ -213,6 +211,154 @@ public class SwitchTutorial {
     }
 
     public void part5 () {
-        
+        /* A switch statement does not have a return value and thus,
+        cannot be used within an expression.
+        In Java 14, switch expressions were introduced exactly for this purpose.
+
+         1. You may write a switch expression using the old syntax as well as the new syntax.
+         2. The value of a switch expression is generated using
+            a yield statement or by directly using an expression on the right side of the ->.
+        3. The old syntax requires a yield statement, while the new syntax does not require it.
+        If you want to use yieldwith the new syntaxmyou need to put the code within {and }.
+         4. You may use any expression in the switch blocks (and not just expression statements, as is the case with switch
+            statements) as long as the type of the expression is compatible with the type of the value expected from the
+            switch expression.
+         */
+
+        double a = compute(2, 3);
+        a = compute2(2, 3);
+
+        // Switch expressions must have a value, Therefore, you cannot have a switch expression that has an execution
+        // path that doesn't generate any value, so this won't compile.
+        // A switch expression must be "exhaustive", which means,
+        // it must provide an execution path that returns a value for every possible value of the selector expression.
+        // Thus, you must either provide a case block for every value of the selector expression or provide a default block.
+
+        /*int b  = 0;
+        return 1 * switch(b){
+            case 0 -> 0.1;
+            case 1 -> 0.2;
+        };*/
+
+        /* A switch expression is allowed to return different types of values from different paths of execution.
+            The only acceptable type is double, because a variable of type double can be assigned all three types of values.
+            The type of switch expression is always determined by the compiler to be the most specific
+            type that is compatible with all of the types of the values that the switch expression can possibly return.
+* */
+            int selector = 3;
+            double value =  switch (selector) {
+            // int value =  switch (selector) { // I won't compile
+            case 0 -> 0.1;
+            case 1 -> 2;
+            default -> 'x';
+        };
+    }
+
+    public void part6 () {
+        /* If/else statement can benefit from pattern matching with instanceof.
+        The pattern matching feature is extended to switch.
+        The following code listing shows a decision making logic written using the
+        switch statement written using new as well as old syntax: */
+
+
+        /*
+        The code tries to match the actual type of the object referred to by
+        obj with the reference types given in the case labels. The block associated with the case label that matches
+        with the type of the object is then executed. For each of the case labels, a pattern variable is also defined,
+        which can be used within that case block. The switch statement with the old syntax requires
+        a break statement for each case block. */
+
+        /*
+            Exhaustive - A regular switch statement need not be exhaustive but a switch statement that uses
+            pattern matching is required to be exhaustive. A switch expression must always be exhaustive
+
+        */
+
+        Object object = 10;
+        //using the new arrow syntax, it produces "Integer 10"
+        switch (object) {
+
+            case Integer i -> System.out.println("Integer " + i);
+            case Double d -> {
+                System.out.println("Double " + d);
+                break; //allowed but redundant
+            }
+            default -> System.out.println("Object " + object);
+        }
+
+        //using the old syntax
+        switch (object) {
+            case Integer i : System.out.println("Integer " + i); break;
+            case Double d : System.out.println("Double " + d); break;
+            default : System.out.println("Object " + object);
+        }
+
+        /* The "fall through" behavior is not permitted when using pattern matching.
+           So, a break statement is required in each case block in the old syntax.
+               The reason for prohibiting fall through is clear from the following code:
+
+           If obj points to an Integer and if the first case is allowed to fall through to the second one,
+           there will be a problem because the second case block expects str to be initialized to point to a String */
+
+        Object object2 = 2;
+        switch (object2) {
+            case Integer i : System.out.println(i);
+            // case String str : System.out.println(str.length()); // won't compile
+            default : System.out.println(object2);
+        }
+
+        /* However, it is possible to fall through to case null and default because no variables are expected
+           to be available in these blocks. Therefore, the following is valid:*/
+
+        /* The matching is done in the order of appearance of case labels.
+           It is therefore, important to specify case labels in the order of increasing "dominance".
+        * */
+        switch(object2) {
+            // A pattern variable is required with each case label, except default and null
+            case Integer i : System.out.println(i); break; //fall through is NOT allowed here
+            // String i is also valid
+            case String str : System.out.print(str.length()); //fall through is allowed here
+            case null : System.out.print("null"); //fall through is allowed here
+            default : System.out.print(object2);
+        }
+
+
+        /* A case label dominates another case label if every value that matches another case label also matches
+        this case label but not vice-versa. For example, case Object dominates case Number n, because every value
+        that matches Number also matches Object. Thus, you cannot put case Object o before case Number n. The reason is simple.
+        If you do that, then case Number n will become unreachable. default label can only be used at the end of the switch
+        block because default dominates every other case label and any case label after default will be unreachable. */
+
+        Object object3 = new String();
+        switch (object3) {
+
+            case String str : System.out.print(str.length()); break;//fall through is allowed here
+            case Object str : System.out.print(str); // Before String str won't compile
+
+                // case null does not dominate any other label and is dominated only by default.
+                // Thus, a case null may appear at any position but not after default.
+            case null : System.out.print("null"); //fall through is allowed here
+            // default : System.out.print(object3); // won't compile unreachable because of Object str
+        }
+    }
+
+    // using the old syntax and the yield statement
+    double compute (double x, int y){
+        return x * switch(y) {
+            case 0 : yield 0.1;
+            case 1 : { yield 0.2; } //enclosing the code within { } is optional
+            default :  yield 0.3;
+        };
+    }
+
+    // using the new arrow -> syntax
+    double compute2 (double x, int y){
+        return x * switch(y){
+            case 0 -> 0.1; //no yield statement required here
+            //case 1 -> { 0.2; } //can't use { } without a yield statement inside
+            //case 1 -> yield 0.2; //yield statement must be inside { }
+            case 1 -> { yield 0.2; } //fine
+            default -> 0.3;
+        };
     }
 }
