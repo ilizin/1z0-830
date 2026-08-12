@@ -1,4 +1,4 @@
 package me.ilizin.certification;
 
-public class RecordTutorial {
+public class MethodReference {
 }
