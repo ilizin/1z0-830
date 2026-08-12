@@ -85,7 +85,7 @@ public class Record {
 
     /* A record is implicitly final, so you cannot make a record abstract, sealed, or unsealed.
        Nested records are implicitly static. */
-    public static final record Student3(int id, String name, String address) implements Person { };
+    public static final record Student2(int id, String name, String address) implements Person { };
 
     public static void main(String[] args) {
 

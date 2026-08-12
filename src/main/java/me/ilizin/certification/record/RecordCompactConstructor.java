@@ -3,7 +3,7 @@ package me.ilizin.certification.record;
 public class RecordCompactConstructor {
 
     // There's a new shorter way of writing the canonical constructor, called the "compact constructor"
-    public record Student(int id, String name, String address) implements Record.Person {
+    public record Student(int id, String name, String address) {
 
         /* There is no formal parameter list in the compact constructor, the compiler just copies it from
            the one present in the record header.

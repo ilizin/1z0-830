@@ -74,7 +74,7 @@ public class Switch {
         /* It prints:
            default
            20 */
-        b2 = 10;
+        b2 = 10; // b2 = 20 will print 20
         switch (b2) {
             default:
                 System.out.println("default");
@@ -107,6 +107,7 @@ public class Switch {
             case 3: { int w = 0; w++; } { int w = 0; w++; } // Multiple code blocks
             case 4: // Empty
             case 5: throw new RuntimeException("Invalid value for i");
+            // case 6: 3; // Won't compile, it's not an expression statement
         }
 
         /* Prior to Java 21, the switch selector expression was restricted to only a few types: byte, short, char,
@@ -123,19 +124,14 @@ public class Switch {
         switch (str) {
             case null -> System.out.println("str is null");
             default -> System.out.println("str is not null");
-            //the above two lines can also be combined into one line:
-            //case null, default -> System.out.println("null or default");
-        }
-
-        switch (str) {
-            // default can be only combined with case null
-            case null, default -> System.out.println("str is null or default");
+            /* The above two lines can also be combined into one line:
+               default can be only combined with case null */
+            //case null, default -> System.out.println("str is null or default");
         }
 
         /* To maintain backward compatibility, a null value does not match the default label.
-         *  Without the case null block, a switch statement will cause a NullPointerException to be thrown if the selector
-         * expression returns null.
-         * */
+           Without the case null block, a switch statement will cause a NullPointerException to be thrown if the selector
+           expression returns null. */
         try {
             switch (str) {
                 // default can be only combined with case null
