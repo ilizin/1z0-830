@@ -151,36 +151,4 @@ public class Switch {
             System.out.println("NullPointerException was thrown");
         }
     }
-
-    public void part3 () {
-        /* There is a new syntax available since Java 14 , Here are a few points
-         1. Here are a few points
-         2. Every switch label is associated with either a single expression statement or single a code block
-         3. The switch statement breaks automatically after
-            the expression or the block executes. It is valid to write a break statement in the code block but it is redundant
-         4. The new syntax has only one way to allow multiple values to be associated with a case block.
-         5. Cannot mix old and new syntax in the same switch statement.
-         */
-
-        int i = 0;
-        switch(i) {
-            case 0 -> System.out.println("0");
-            //break; //invalid only single expression statement or single a code block are allowed
-            case 1 -> {
-                System.out.println("1");
-                break; //valid, but redundant
-            } //enclosing code within { } is optional
-            case 2, 3 -> System.out.println("2 or 3");
-            //cannot do this
-            //case 4 -> case 5 -> System.out.println("Four or five arguments");//invalid
-        }
-    }
-
-
-
-
-
-
-
-
 }
