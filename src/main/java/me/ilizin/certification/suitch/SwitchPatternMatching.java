@@ -4,11 +4,8 @@ public class SwitchPatternMatching {
 
     public static void main(String[] args) {
 
-        /*  If/else statement can benefit from pattern matching with instanceof.
-            The pattern matching feature is extended to switch.
-            The following code listing shows a decision making logic written using the switch statement written
-            using new as well as old syntax.
-
+        /*  If/else statement can benefit from pattern matching with instanceof, the pattern matching feature
+            is extended to switch.
             The code tries to match the actual type of the object referred to by object with the reference types
             given in the case labels. The block associated with the case label that matches with the type of the object
             is then executed. For each of the case labels, a pattern variable is also defined, which can be used within

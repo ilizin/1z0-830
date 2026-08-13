@@ -33,7 +33,7 @@ public class SwitchExpression {
         // using the new arrow -> syntax
         result = x * switch (y) {
             case 0 -> 0.1; // no yield statement required here
-            //case 1 -> { 0.2; } //c an't use { } without a yield statement inside
+            //case 1 -> { 0.2; } //can't use { } without a yield statement inside
             //case 1 -> yield 0.2; // yield statement must be inside { }
             case 1 -> {
                 yield 0.2;
