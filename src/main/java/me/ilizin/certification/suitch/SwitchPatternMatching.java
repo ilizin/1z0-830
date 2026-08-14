@@ -54,7 +54,7 @@ public class SwitchPatternMatching {
         this case label but not vice-versa. For example, case Object dominates case Number, because every value
         that matches Number also matches Object. Thus, you cannot put case Object o before case Number n.
         If you do that, then case Number will become unreachable, the matching is done in the order of appearance of
-        case labels, ut is therefore, important to specify case labels in the order of increasing "dominance".
+        case labels, therefore it's important to specify case labels in the order of increasing "dominance".
         Default label can only be used at the end of the switch block because default dominates every other case label
         and any case label after default will be unreachable. */
 

@@ -23,7 +23,8 @@ public class SwitchExpression {
             case 0:
                 yield 0.1;
             case 1: {
-                yield 0.2;
+                double a = 0.2;
+                yield a;
             } // Enclosing the code within { } is optional
             default:
                 yield 0.3;

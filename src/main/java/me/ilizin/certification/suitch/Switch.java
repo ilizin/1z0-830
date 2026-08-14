@@ -56,6 +56,7 @@ public class Switch {
             // It won't compile because 10000 is too large to fit into a byte
             // case 10000 : System.out.println("10000");
         }
+        // b = 10000; // Invalid
 
         /* It is common to use a single variable as the selector expression, but you can use any expression
            inside the switch. */
@@ -134,7 +135,6 @@ public class Switch {
            expression returns null. */
         try {
             switch (str) {
-                // default can be only combined with case null
                 default -> System.out.println("str null or default");
             }
         } catch (NullPointerException ex) {

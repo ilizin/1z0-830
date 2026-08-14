@@ -19,6 +19,7 @@ public class SwitchNewSyntax {
                 System.out.println("The value is 1");
                 break; //valid, but redundant
             }
+            // The unique way to allow multiple values to be associated with a case block
             case 2, 3 -> System.out.println("The value is 2 or 3");
             //case 4 -> case 5 -> System.out.println("Four or five arguments"); // Invalid
         }
