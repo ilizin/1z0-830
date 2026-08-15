@@ -50,6 +50,8 @@ public class Record {
         // int a;
         static int b;
 
+        // int id; // Not allowed, because the variable 'id' is already defined in the scope
+
         // A record may have static initializers but not instance initializers.
         static {
             b = 10;
@@ -80,7 +82,7 @@ public class Record {
     // A record is allowed to implement interfaces and may inherit default methods from that interface.
     public interface Person {
         public default void run() {};
-        // void walk(); // Student3 fails to compile
+        // void walk(); // Student2 fails to compile
     }
 
     /* A record is implicitly final, so you cannot make a record abstract, sealed, or unsealed.

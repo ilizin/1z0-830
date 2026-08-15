@@ -1,5 +1,9 @@
 package me.ilizin.certification.lambdaexpression;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class LambdaExpressionSyntax {
 
     public interface LambdaType {
@@ -29,15 +33,15 @@ public class LambdaExpressionSyntax {
 
         /* If a lambda expression takes no parameters, the parameter part of the expression must have an empty set
            of parentheses, i.e., ( ) */
-        LambdaType lamda1 = () -> true; // Valid
+        LambdaType lambda1 = () -> true; // Valid
         // -> 1 // Invalid, missing variable declaration part
 
         /* If a lambda expression takes exactly one parameter, the parameter name may be specified within parentheses, i.e.,
-           ( pName ) or without the parentheses, i.e., pName. If you want include the parameter type then you will need
+           ( pName ) or without the parentheses, i.e., pName. If you want to include the parameter type then you will need
            to use parentheses. */
         LambdaType2 lambda2 = a -> a * a; // Valid
         lambda2 = (a) -> a * a; // Valid
-        lambda2 = (int a) -> a*a; // Valid
+        lambda2 = (int a) -> a * a; // Valid
         // int a -> a*a // Invalid
 
         /* If a lambda expression takes more than one parameter, all the parameter names must be specified
@@ -74,7 +78,7 @@ public class LambdaExpressionSyntax {
            a semi-colon. */
         lambda2 = (a) -> {
             int x = 2;
-            int y = x+a;
+            int y = x + a;
             return y;
         };
 
@@ -83,5 +87,36 @@ public class LambdaExpressionSyntax {
             int y = 3;
             System.out.println(x+y);
         };
+
+        /* The variables that you define in the variable section of a lambda expression exist in the same scope
+           as which the lambda expression itself exists. This means, you cannot redefine the variables that already
+           exist in that scope. */
+
+        /* List<String> names = Arrays.asList("alex", "bob", "casy", "abel");
+        for(String n :  names){
+            Predicate<String> p = n -> n.startsWith("a"); //will not compile
+            if(p.test(n))  {
+                System.out.println(n);
+            }
+        } */
+
+        /* It is possible to access a variable that is in scope of the lambda expression from within the lambda
+           expression's body but only if that variable is declared as final or is "effectively final".
+           this rule is applicable only for local variables and not for instance or static fields. It is possible
+           to access instance and static fields from the body of a lambda expression even if they are not final. */
+
+        List<String> names = Arrays.asList("alex", "bob", "casy", "abel");
+        int x = 0;
+        for(String n :  names){
+            Predicate<String> p = k->{
+                System.out.println(n); // Valid n is effectively final
+                // System.out.println(x); // Will not compile
+                return k.startsWith("a");
+            };
+            if(p.test(n))  {
+                System.out.println(n);
+            }
+        }
+        x = 1; //x is being changed here
     }
 }

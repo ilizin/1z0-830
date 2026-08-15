@@ -29,7 +29,9 @@ public class RecordNonCanonicalConstructor {
         }
 
         private static int checkId(int value) {
-            if (value < 0) throw new IllegalArgumentException("Bad Id");
+            if (value < 0) {
+                throw new IllegalArgumentException("Bad Id");
+            }
             return value;
         }
     }

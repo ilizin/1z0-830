@@ -1,7 +1,9 @@
 package me.ilizin.certification.lambdaexpression;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.*;
 
 public class StandardFunctionalInterfaces {
@@ -54,5 +56,48 @@ public class StandardFunctionalInterfaces {
            because they represent an independent function, among those:
            1. java.util.Comparator - Used while sorting collections.
            2. java.util.Comparator - Used while sorting collections. */
+
+        /* Iterating through a collection is very common requirement. Prior to Java 8, a common way to iterate through
+           a collection was to use a regular for loop. The Collection interface actually extends java.lang.Iterable interface
+           and so, it was also possible to use the enhanced forloop (aka the for-each loop) for this purpose.
+           With Java 8, a default method named forEach(Consumer<E> consumer)was added to the Iterable interface, */
+        List<String> list = List.of("a", "b", "c");
+        // Old way
+        for(String s : list){
+            System.out.println(s);
+        }
+        // New way
+        list.forEach(s -> System.out.println(s));
+
+        /* The Map interface defines a default forEach method that takes a BiConsumer instead of Consumer.
+           Here is an example of how it is used to process the elements of a Map: */
+        BiConsumer<String, Integer> bc = (s, i) -> System.out.println(s+" is mapped to "+i);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("One", 1);
+        map.put("Two", 2);
+        map.forEach(bc);
+
+        /* Another common operation performed with collections is filtering. The Collection interface has a default
+           removeIf(Predicate<? super E> filter) method for this purpose. This method removes all of the elements of this
+           list that satisfy the given predicate. */
+        List<Integer> iList = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        Predicate<Integer> p = x -> x % 2 == 0;
+        iList.removeIf(p);
+        System.out.println(iList);
+
+        /* A collection has no notion of order but a list does. It makes sense, therefore, that List interface has a
+           default sort(Comparator<? super E> comparator)method which allows you to sort the elements of this list using
+           the sorting order determined by the comparator. The java.util.Comparator interface has been around since
+           Java 1.2 but it has been made a functional interface in Java 8. Its functional method is
+           int compare(T o1, T o2), which compares its two arguments and returns a negative integer, zero, or a
+           positive integer if the first argument is less than, equal to, or greater than the second.
+
+           If you want to sort the list in the reverse order, you can change the lambda expression to,
+           (a, b)->-a.compareTo(b). Observe the minus sign in front of a.compareTo(b). Observe that we are using the
+           compareTo method available in the String class to compare two strings.*/
+
+        List<String> games = new ArrayList<>(List.of("football", "cricket", "baseball", "tennis"));
+        games.sort( (a, b)->a.compareTo(b));
+        games.forEach(s -> System.out.println(s));
     }
 }

@@ -16,7 +16,10 @@ public class RecordCompactConstructor {
         // Exactly one constructor, Either long-form or compact. Not both.
         public Student { //No formal parameter list
             if (id < 1) throw new RuntimeException("Invalid ID");
-            if (name.length() < 0) name = "";
+            if (name.length() < 0) {
+                name = "";
+                // this.name = name // Not allowed
+            }
         }
     }
 }
