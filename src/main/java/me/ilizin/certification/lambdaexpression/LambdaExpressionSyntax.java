@@ -59,11 +59,11 @@ public class LambdaExpressionSyntax {
         /* To be able to apply an annotation, you need to have a type for the variable or you can use
            the var declaration, */
         // lambda2 = (@NotNull Integer a) -> a * a; // Valid
-        // lambda2 = (@NotNull var a) -> a * a; //Valid
+        // lambda2 = (@NotNull var a) -> a * a; // Valid
 
         /* Expression with or without a return value: You can simply put an expression on the right side of ->.
-           If the expression has a return value and if the lambda expression is supposed to return a value,
-           the compiler will insert a return statement on it own. You must not write the return keyword. */
+           If the expression has a return value, the compiler will insert a return statement on it own. You must
+           not write the return keyword. */
         lambda2 = a -> a + 2;
         // lambda2 = a -> return a + 2 // Invalid, must not have return keyword
 
@@ -92,23 +92,24 @@ public class LambdaExpressionSyntax {
            as which the lambda expression itself exists. This means, you cannot redefine the variables that already
            exist in that scope. */
 
-        /* List<String> names = Arrays.asList("alex", "bob", "casy", "abel");
+         List<String> names = Arrays.asList("alex", "bob", "casy", "abel");
         for(String n :  names){
-            Predicate<String> p = n -> n.startsWith("a"); //will not compile
+            //Predicate<String> p = n -> n.startsWith("a"); // Will not compile
+            Predicate<String> p = x -> x.startsWith("a");
             if(p.test(n))  {
                 System.out.println(n);
             }
-        } */
+        }
 
         /* It is possible to access a variable that is in scope of the lambda expression from within the lambda
            expression's body but only if that variable is declared as final or is "effectively final".
-           this rule is applicable only for local variables and not for instance or static fields. It is possible
+           This rule is applicable only for local variables and not for instance or static fields. It is possible
            to access instance and static fields from the body of a lambda expression even if they are not final. */
 
-        List<String> names = Arrays.asList("alex", "bob", "casy", "abel");
+        names = Arrays.asList("alex", "bob", "casy", "abel");
         int x = 0;
         for(String n :  names){
-            Predicate<String> p = k->{
+            Predicate<String> p = k-> {
                 System.out.println(n); // Valid n is effectively final
                 // System.out.println(x); // Will not compile
                 return k.startsWith("a");

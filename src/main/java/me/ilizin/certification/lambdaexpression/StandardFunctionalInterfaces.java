@@ -35,8 +35,7 @@ public class StandardFunctionalInterfaces {
 
         /* A Function<T, R> takes an argument of type T, performs some transformation on that argument,
            and returns the result of type R. Its functional method is R apply(T t).
-           Besides the apply method, Function has two default methods, namely, andThen and compose.
-           Besides the apply method, BiFunction has one default method, named, andThen. */
+           Besides the apply method, Function has two default methods, namely, andThen and compose. */
         Function<Car, String> carPropertyFunction = c2 -> c2.company();
 
         /* A BiFunction<T,U,R> is similar to (but does not extend) Function except that it takes two arguments of type T
@@ -52,14 +51,14 @@ public class StandardFunctionalInterfaces {
         /* The functional interfaces described above can be used only with reference types and not with primitive types.
            So, for example, you cannot do: BiFunction<double, double, double> areaBiF = (a, b) -> a * b;
 
-           many existing interfaces in other JDK packages have also been marked with @FunctionalInterface annotation
+           Many existing interfaces in other JDK packages have also been marked with @FunctionalInterface annotation
            because they represent an independent function, among those:
            1. java.util.Comparator - Used while sorting collections.
-           2. java.util.Comparator - Used while sorting collections. */
+           2. java.lang.Runnable- Used while creating new threads. */
 
         /* Iterating through a collection is very common requirement. Prior to Java 8, a common way to iterate through
            a collection was to use a regular for loop. The Collection interface actually extends java.lang.Iterable interface
-           and so, it was also possible to use the enhanced forloop (aka the for-each loop) for this purpose.
+           and so, it was also possible to use the enhanced for loop (aka the for-each loop) for this purpose (Java 5).
            With Java 8, a default method named forEach(Consumer<E> consumer)was added to the Iterable interface, */
         List<String> list = List.of("a", "b", "c");
         // Old way
@@ -71,7 +70,7 @@ public class StandardFunctionalInterfaces {
 
         /* The Map interface defines a default forEach method that takes a BiConsumer instead of Consumer.
            Here is an example of how it is used to process the elements of a Map: */
-        BiConsumer<String, Integer> bc = (s, i) -> System.out.println(s+" is mapped to "+i);
+        BiConsumer<String, Integer> bc = (s, i) -> System.out.println(s + " is mapped to " + i);
         Map<String, Integer> map = new HashMap<>();
         map.put("One", 1);
         map.put("Two", 2);
@@ -86,18 +85,18 @@ public class StandardFunctionalInterfaces {
         System.out.println(iList);
 
         /* A collection has no notion of order but a list does. It makes sense, therefore, that List interface has a
-           default sort(Comparator<? super E> comparator)method which allows you to sort the elements of this list using
+           default sort(Comparator<? super E> comparator) method which allows you to sort the elements of this list using
            the sorting order determined by the comparator. The java.util.Comparator interface has been around since
            Java 1.2 but it has been made a functional interface in Java 8. Its functional method is
            int compare(T o1, T o2), which compares its two arguments and returns a negative integer, zero, or a
            positive integer if the first argument is less than, equal to, or greater than the second.
 
            If you want to sort the list in the reverse order, you can change the lambda expression to,
-           (a, b)->-a.compareTo(b). Observe the minus sign in front of a.compareTo(b). Observe that we are using the
-           compareTo method available in the String class to compare two strings.*/
+           (a, b) -> -a.compareTo(b). Observe the minus sign in front of a.compareTo(b). Observe that we are using the
+           compareTo method available in the String class to compare two strings. */
 
         List<String> games = new ArrayList<>(List.of("football", "cricket", "baseball", "tennis"));
-        games.sort( (a, b)->a.compareTo(b));
+        games.sort( (a, b) -> a.compareTo(b));
         games.forEach(s -> System.out.println(s));
     }
 }

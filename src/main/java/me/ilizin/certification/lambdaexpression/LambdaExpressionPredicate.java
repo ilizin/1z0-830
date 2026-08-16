@@ -30,8 +30,7 @@ public class LambdaExpressionPredicate {
         }
      }
 
-    /* The Java standard library includes a generic interface for filtering through a list of objects, It looks like this.
-
+    /* The Java standard library includes a generic interface for filtering through a list of objects:
        interface Predicate<T> {
           boolean test(T t);
        }
@@ -59,7 +58,7 @@ public class LambdaExpressionPredicate {
            1. default Predicate<T> and(Predicate<? super T> other):
                 Returns a composed predicate that represents a short-circuiting logical AND of this predicate and another. */
         Predicate<Car> p1 = c -> c.company.equals("Honda");
-        Predicate<Car> p2 = c -> c.price>(20000.0);
+        Predicate<Car> p2 = c -> c.price > 20000.0;
 
         Car c = new Car("Honda", 2012, 9000.0, "HATCH");
         if(p1.test(c) && p2.test(c)) {
@@ -86,7 +85,7 @@ public class LambdaExpressionPredicate {
         /* 4. static <T> Predicate<T> isEqual(Object targetRef):
                 Returns a predicate that tests if two arguments are equal according to Objects.equals(Object, Object).
               For example, normally, you would compare two Car objects using c1.equals(c2).
-              You could create a Predicate out of the equals method like this and then compare c1 with other Car objects
+              You could create a Predicate out of the equals method like this and then compare c with other Car objects
               using this Predicate, i.e., equals.test(c2). */
 
         Predicate equals = Predicate.isEqual(c);
