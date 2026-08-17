@@ -13,7 +13,7 @@ public class MethodReference {
 
     public static void main(String[] args) {
 
-    /*  printing all the elements of a list: It uses a lambda expression to create the accept method of the
+    /*  Printing all the elements of a list: It uses a lambda expression to create the accept method of the
         Consumer interface. */
         List<String> list = new ArrayList<>();
         list.forEach( obj -> System.out.println(obj) );
@@ -30,8 +30,8 @@ public class MethodReference {
         must be able to identity the values that can be passed as arguments to the method.*/
         list.forEach(System.out::println);
 
-        /* Identifying the method - The method name is written on the right side of :: in a method reference expression. For example, in
-           System.out::println, println is the method name. String::new would mean that you want to create an
+        /* Identifying the method - The method name is written on the right side of :: in a method reference expression.
+           For example, in System.out::println, println is the method name. String::new would mean that you want to create an
            instance of String
 
            Identifying the target reference - the reference on which the method is to be invoked, is indicated on the
@@ -46,7 +46,7 @@ public class MethodReference {
            A reference that is available in the context in which the method reference expression is written.
            the compiler can get hold of the target reference from the context as well. Here is an example:
            reverse is an instance method of StringBuilder, but there is no clearly identifiable StringBuilder reference variable
-           present in the above code! the compiler is smart to figure out that this method
+           present in the below code! the compiler is smart to figure out that this method
            reference expression is present within the context of List's forEach method, which takes a
            Consumer<StringBuilder> instance as an argument. The reverse method is supposed to be executed inside that
            Consumer<StringBuilder>'s accept method. The accept method will be passed a StringBuilder reference as an argument.
@@ -65,7 +65,7 @@ public class MethodReference {
 
         Map<String, String> map = new HashMap<>();
         //map.forEach(System.out::println); // Invalid forEach method expects a BiConsumer<String, String> and
-           // BiConsumer<String, String>'s accept method gets two arguments
+        // BiConsumer<String, String>'s accept method gets two arguments
 
         /* Observe that Map<Person, Person>'s forEach expects a BiConsumer<Person, Person>and its accept method will
            be invoked with two Person references as arguments. Thus, there are two Person references in the context
