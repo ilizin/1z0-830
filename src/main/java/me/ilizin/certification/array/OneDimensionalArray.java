@@ -1,8 +1,16 @@
 package me.ilizin.certification.array;
 
+import java.util.Arrays;
+
 public class OneDimensionalArray {
 
     private static class MyClass {}
+
+    /* Arrays are quite powerful as a data structure but they are somewhat primitive as a data type.
+     Arrays have only one field and merely a couple of methods. But because of their simplicity, arrays are used as building
+     blocks for other data types and data structures. For example, the String data type is built upon an array of chars.
+     So are StringBuffer and StringBuilder.
+     Arrays are also used extensively for building higher level data structures such as List, Stack, and Queue. */
 
     public static void main(String[] args) {
 
@@ -61,5 +69,75 @@ public class OneDimensionalArray {
 
         // It is prohibited to specify the size if you are specifying individual elements.
         // int[] ia = new int[2]{ 1, 2 }; // Will not compile.
+
+        /* Similarly, if you have an array variable ia pointing an array of 5 ints, the first element can be accessed
+        using ia[0] and the last element using ia[4]. If you try to access any array beyond its range, JVM will throw an instance
+        of ArrayIndexOutOfBoundsException. */
+        int[] ia10 = new int[3];
+        // i = ia10[-1]; // Will cause an ArrayIndexOutOfBoundsException to be thrown.
+        // i = ia10[3]; // Will cause an ArrayIndexOutOfBoundsException to be thrown.
+
+        /* It is possible to have an array of length 0.There are no elements in this array. An array of length 0 is not
+            the same as null. A good example of an array of length 0 is the args parameter of the main method. If you run
+            a class with no argument, args will not be null but will refer to an array of Strings of length 0. */
+        int[] ia11 = new int[0]; // ia11 points to an array of ints whose length is 0.
+
+        /* All array classes have one field named length, which is of type int. This field is public and it stores
+           the length of the array. This field is also final, which reflects the fact that you cannot change the length
+           of an array after its creation. */
+        System.out.println(ia11.length);
+
+        /* All array classes also have a public method named clone. This method creates a copy of the array object.
+           It merely creates a new array object of the same length and copies the contents of existing array into the new array.
+           Which means, if the existing array contained primitive values, those values will be copied to the elements of the new array.
+           If the existing array contained references to objects, those references will be copied to the elements of the new array.
+           Thus, the elements of the new array will also point to the same objects. This is also known as "shallow copy". */
+        int[] myIntArr1 = {1, 2, 3, 4, 5};
+        int[] myIntArr2 = (int[]) myIntArr1.clone();
+        String[] myIntArr3 = {"1", "2", "3", "4", "5"};
+        String[] myIntArr4 = (String[]) myIntArr3.clone();
+
+        /* Array classes inherit all the members of the Object class. This includes toString, equals, and hashCode methods. */
+        System.out.println(myIntArr3.hashCode());
+        System.out.println(myIntArr3.toString());
+
+        /* Arrays are "covariant", Meaning, you can store a subclass object in an array that is declared to be of the type of
+           its superclass, for example, if you have an array of type java.lang.Number, you can store java.lang.Integer or
+           java.lang.Float objects.
+           It also means that array types have a supertype-subtype relation between them if and only if such a relation
+           exists between their element types. For example, Number[] is considered a "supertype" of Integer[] because
+           Number is a supertype of Integer.*/
+        Number[] na = { 1, 2, 3 };
+        na[0] = 1.2f;
+        System.out.println(na[0]);
+        na = new Integer[10];
+        // na[0] = 1.2f; System.out.println(na[0]); It fails a runtime
+        /* The second is that arrays are "reified". Meaning, the type information of an array object is preserved in the
+           array object itself and is available to the JVM at runtime. This enables the checking of arrays and its elements
+           for type safety at runtime by the JVM. In other words, the JVM knows about the type of the actual array object and
+           enforces type checking while storing elements in the array.
+           For example, if you have an array of type X, the JVM will not let you set any element of that array to point
+           to any object other than an X (or a subtype of X) */
+        Integer[] ia12  = {1, 2, 3 };
+        Number[] na12 = ia12; // OK, assigning array of Integers to a variable of type Number[], because Integer[] is-a Number[]
+        // na12[0] = 1.0;
+        /* assigning a Double to an element of Number[] its ok Double is-a Number, but fails at runtime,
+        the JVM will throw a java.lang.ArrayStoreException The JVM knows that
+        this array is actually an array of Integers and since a Double is-not-an Integer, it will not allow this assignment */
+
+        /* Java standard library does include a utility class named Arrays in package java.util, it contains a large number
+        of static utility methods for manipulating any given array object. Arrays.toString method prints the contents of an array.
+        Besides those, it also has equals and deepEquals methods that let you compare two arrays based on their content. */
+        Integer[] test1 = {2, 3, 4, 5};
+        Integer[] test2 = {2, 3, 4, 5};
+        System.out.println(Arrays.equals(test1, test2)); // true
+        test2[0] = 0;
+        System.out.println(Arrays.equals(test1, test2)); // false
+        test1 = null; test2 = null;
+        System.out.println(Arrays.equals(test1, test2)); // true
+        Integer[][] test11 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
+        Integer[][] test12 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
+        System.out.println(Arrays.equals(test11, test12)); // false
+        System.out.println(Arrays.deepEquals(test11, test12)); // true
     }
 }
