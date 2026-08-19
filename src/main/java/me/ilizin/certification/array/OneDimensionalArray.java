@@ -9,7 +9,6 @@ public class OneDimensionalArray {
     /* Arrays are quite powerful as a data structure but they are somewhat primitive as a data type.
      Arrays have only one field and merely a couple of methods. But because of their simplicity, arrays are used as building
      blocks for other data types and data structures. For example, the String data type is built upon an array of chars.
-     So are StringBuffer and StringBuilder.
      Arrays are also used extensively for building higher level data structures such as List, Stack, and Queue. */
 
     public static void main(String[] args) {
@@ -20,21 +19,21 @@ public class OneDimensionalArray {
         int[] ia1, ia2;  // ia1 and ia2 are one dimensional arrays of ints
         int[][] iaa;  // iaa is a two dimensional array of ints
 
-        // An array declaration can never include the size of the array. Thus, the following are declarations will not compile:
+        // An array declaration can never include the size of the array.
         // int[2] Invalid;
         // int[3][] Invalid;
         // int[][4] Invalid;
 
-        /* Java allows you to apply square brackets to the variable name instead of type name as well.*/
+        /* Java allows you to apply square brackets to the variable name instead of type name as well. */
         int i2, ia[];  // i2 is an int but ia is a one dimensional array of int values
-        int[] ia3, iaa2[];  // ia3 is a one dimensional array of ints but iaa2 is a two dimensional array of ints and so on
+        int[] ia3, iaa2[];  // ia3 is a one dimensional array of ints but iaa2 is a two dimensional array of ints
 
         // Arrays of objects are declared the same way. For example,
         Object[] obja, objaa[];  // obja is a one dimensional array of Objects but objaa is a two dimensional array of Objects
         String[] strA; // strA is a one dimensional array of Strings
 
         /* The statements shown above only declare array variables, You use the new keyword to create an array object.
-           The parts on the right-hand side of = sign in the above statements are called "array creation expressions".
+           The parts on the right-hand side of = sign in the below statements are called "array creation expressions".
            Every element of the array is also initialized to its default value automatically by the JVM. The default
            values of array elements are very straightforward - references are initialized to null, numeric primitives to 0,
            and booleans to false. All the elements of an array are initialized to the same value. */
@@ -44,7 +43,7 @@ public class OneDimensionalArray {
         MyClass[] myca = new MyClass[5]; // An array of MyClass of size 5
         // int[] invalid = new int[]; //missing size. will not compile.
 
-        /* In Java, arrays are objects of specific classes. It not an instance of Object class but since Object is the root of every
+        /* In Java, arrays are objects of specific classes. It's not an instance of Object class but since Object is the root of every
            class in Java, an array object is an Object and all methods of the Object class can be invoked on an array.
            The output shows that ia6, which is declared to be of type int[], is not an instance of int but of a class named [I
            and so on.
@@ -66,6 +65,9 @@ public class OneDimensionalArray {
            you to create as well as initialize each element of the array with the values that you want */
         int[] ia9 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }; // An array of ints of size 10
         String[] str = {"a", "b", "c", "d", "e"}; // An array of Strings of size 5
+        int[] iap = new int[]{ 1, 2 };
+        int iap2;
+        // iap2 = {1, 2}; // Array initializer is not allowed here, it goes with the array declaration always.
 
         // It is prohibited to specify the size if you are specifying individual elements.
         // int[] ia = new int[2]{ 1, 2 }; // Will not compile.
