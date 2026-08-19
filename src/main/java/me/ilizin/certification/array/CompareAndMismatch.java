@@ -47,11 +47,26 @@ public class CompareAndMismatch {
            second array; and a value greater than 0 if the first array is lexicographically greater than the second array. */
         ia1 = new int[]{ 0, 1, 2, 6};
         ia2 = new int[]{ 0, 1, 5};
-        System.out.print(Arrays.compare(ia1, ia2)); //prints 3
+        System.out.println(Arrays.compare(ia1, ia2)); //prints -1
 
         ia1 = new int[]{ 0, 1, 5, 6};
         ia2 = new int[]{ 0, 1, 5};
-        System.out.print(Arrays.compare(ia1, ia2)); //prints -11
+        System.out.println(Arrays.compare(ia1, ia2)); //prints 1
 
+        ia1 = new int[]{ 0, 1, 5, 6};
+        ia2 = new int[]{ 0, 1, 5, 6};
+        System.out.println(Arrays.compare(ia1, ia2)); //prints 0
+
+        ia1 = null;
+        ia2 = new int[]{ 0, 1, 5, 6};
+        System.out.println(Arrays.compare(ia1, ia2)); //prints -1
+
+        ia1 = new int[]{ 0, 1, 5, 6};
+        ia2 = null;
+        System.out.println(Arrays.compare(ia1, ia2)); //prints 1
+
+        ia1 = null;
+        ia2 = null;
+        System.out.println(Arrays.compare(ia1, ia2)); //prints 0
     }
 }
