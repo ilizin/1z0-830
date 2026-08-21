@@ -73,8 +73,8 @@ public class OneDimensionalArray {
         // int[] ia = new int[2]{ 1, 2 }; // Will not compile.
 
         /* Similarly, if you have an array variable ia pointing an array of 5 ints, the first element can be accessed
-        using ia[0] and the last element using ia[4]. If you try to access any array beyond its range, JVM will throw an instance
-        of ArrayIndexOutOfBoundsException. */
+        using ia[0] and the last element using ia[4]. If you try to access any array beyond its range, JVM will throw
+        an instance of ArrayIndexOutOfBoundsException. */
         int[] ia10 = new int[3];
         // i = ia10[-1]; // Will cause an ArrayIndexOutOfBoundsException to be thrown.
         // i = ia10[3]; // Will cause an ArrayIndexOutOfBoundsException to be thrown.
@@ -113,7 +113,7 @@ public class OneDimensionalArray {
         na[0] = 1.2f;
         System.out.println(na[0]);
         na = new Integer[10];
-        // na[0] = 1.2f; System.out.println(na[0]); It fails a runtime
+        // na[0] = 1.2f; System.out.println(na[0]); // It fails a runtime
         /* The second is that arrays are "reified". Meaning, the type information of an array object is preserved in the
            array object itself and is available to the JVM at runtime. This enables the checking of arrays and its elements
            for type safety at runtime by the JVM. In other words, the JVM knows about the type of the actual array object and

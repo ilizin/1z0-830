@@ -8,7 +8,7 @@ public class MultiDimensionalArray {
            In other words, an array of "array of ints". You can declare it like this. Visually, the declaration looks
            like iaa is a two-dimensional matrix of ints. But in reality, iaa points to a single dimensional array,
            where each element of the array is an array of ints.
-           iN a two dimensional array, the length of each row will always be the same. While in an array of arrays,
+           In a two dimensional array, the length of each row will always be the same. While in an array of arrays,
            there is no such restriction. Each row can refer to an array of any length. */
         int[][] iaa;
         int[] iaa4[];
@@ -40,7 +40,7 @@ public class MultiDimensionalArray {
         */
         int[] intArray = new int[]{ 0, 1, 2 };
         Object obj = intArray;
-        // This will not compile because elements of the array pointed to by intArrayare not Objects. They are ints.
+        // This will not compile because elements of the array pointed to by intArray are not Objects. They are ints.
         // Object[] oa = intArray;
         Integer[] intArray2 = new Integer[]{ 0, 1, 2 };
         Object[] oa = intArray2;

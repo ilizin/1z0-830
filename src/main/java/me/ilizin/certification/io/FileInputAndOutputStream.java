@@ -69,6 +69,12 @@ public class FileInputAndOutputStream {
         };
     }
 
+    /* It is a lower level stream and it does not take an input or an output stream as an argument during instantiation.
+       For example, FileInputStream, and ByteArrayInputStream reveal their data sources (a file and a byte array respectively)
+       and are therefore, lower level streams. On the other hand, ObjectInputStream, BufferedInputStream, and
+       DataInputStream reveal the type of the data that they deal with (Object, byte buffer, and primitive data, respectively)
+       instead of the source or the sink of the data and are therefore, higher level streams. */
+
     /* abstract class InputStream : The root class for all byte based input streams
        Important methods:
         int available()

@@ -7,11 +7,9 @@ public class CompareAndMismatch {
     public static void main(String[] args) {
         /* Finds and returns the index of the first mismatch between two int arrays, otherwise return -1 if no mismatch
            is found. The index will be in the range of 0 (inclusive) up to the length (inclusive) of the smaller array.
-
-           If the two arrays share a common prefix then the returned index is the length of the common prefix and
-           it follows that there is a mismatch between the two elements at that index within the respective arrays.
-           If one array is a proper prefix of the other then the returned index is the length of the smaller array and
-           it follows that the index is only valid for the larger array. Otherwise, there is no mismatch. */
+           If the two arrays share a common prefix then the returned index is the length of the common prefix.
+           If one array is a proper prefix of the other than the returned index is the length of the smaller array.
+           Otherwise, there is no mismatch. */
 
         int[] ia1 = { 0, 1, 2, 6 };
         int[] ia2 = { 0, 1, 5 };
