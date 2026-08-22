@@ -93,9 +93,7 @@ public class RecordStatement {
 
         System.out.println();
         /* There is no difference in how you use a record because it's nothing more than an immutable class.
-           For example, here is how to instantiate a Student record and access its field.
-           The compiler provides accessor methods for all of the component fields automatically, the name and the return
-           type of an accessor method are the same as the name and type of the field. */
+           For example, here is how to instantiate a Student record and access its field. */
         Student student = new Student(1, "Bob Smith", "123 Main Street");
         System.out.println(student.name()); // Observe that it is not getName() but just name()
     }
