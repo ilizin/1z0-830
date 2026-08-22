@@ -1,6 +1,6 @@
 package me.ilizin.certification.record;
 
-public class Record {
+public class RecordStatement {
 
     public class StudentOld {
         private int id;
@@ -37,39 +37,15 @@ public class Record {
        For each record component, a record class has a field with the same name as the record component and the same type.
        This field, which is declared implicitly, is known as a component field. For each record component, a record
        class has a method with the same name as the record component and an empty formal parameter list. This method,
-       which is declared explicitly or implicitly, is known as an accessor method. */
+       which is declared explicitly or implicitly, is known as an accessor method.
 
-    /* A record implicitly extends java.lang.Record class but it is not allowed to have an extends clause.
+       A record implicitly extends java.lang.Record class but it is not allowed to have an extends clause.
        The reason is that if it were allowed to extend another class, it would inherit the instance fields of
-       that class and its state would depend on that class as well. */
-    public record Student(int id, String name, String address) {
-        /* (int id, String name, String address) is the record header and { } is the record body. */
+       that class and its state would depend on that class as well.
 
-        /* A record is not allowed to define any instance field explicitly.
-           It may have static fields though because static fields do not constitute the state of an object. */
-        // int a;
-        static int b;
+       A record is implicitly final, so you cannot make a record abstract, sealed, or unsealed.
 
-        // int id; // Not allowed, because the variable 'id' is already defined in the scope
-
-        // A record may have static initializers but not instance initializers.
-        static {
-            b = 10;
-        }
-
-        /* A record is not allowed to have abstract or native methods, but is allowed to define other instance
-           and static methods. */
-        static void def() {}
-
-        void abc() {}
-
-        /* You are allowed to define an accessor method explicitly. It must be public and must not have a
-           throws clause. */
-        public String name() {
-            return name;
-        }
-
-        /* The compiler automatically generates a few instance methods in addition to the accessor methods:
+       The compiler automatically generates a few instance methods in addition to the accessor methods:
            1. public final boolean equals(Object o)
            2. public final int hashCode()
            3. public final String toString()
@@ -77,24 +53,49 @@ public class Record {
                 representations of every component field of the record.
                 For example:  Student[id=1, name=Bob, address=123 Main].
            You are free to provide your own implementations of these methods explicitly in the record. */
+    public final record Student(int id, String name, String address) {
+        /* 1. (int id, String name, String address) is the record header
+           2. { } is the record body. */
+
+        /* A record is not allowed to define any instance field explicitly, but it may have static fields though because
+           static fields do not constitute the state of an object. */
+        // int a;
+        static int b;
+
+        /* Not allowed, because the variable 'id' is already defined in the scope */
+        // int id;
+
+        /* A record may have static initializers but not instance initializers. */
+        static {
+            b = 10;
+        }
+
+        /* A record is not allowed to have abstract or native methods, but is allowed to define other instance
+           and static methods. */
+        static void def() {}
+        void abc() {}
+
+        /* You are allowed to define an accessor method explicitly. It must be public and must not have a throws clause. */
+        public String name() { //throws RuntimeException {
+            return name;
+        }
     };
 
-    // A record is allowed to implement interfaces and may inherit default methods from that interface.
     public interface Person {
         public default void run() {};
-        // void walk(); // Student2 fails to compile
+        // void walk(); // Student2 will fail to compile
     }
-
-    /* A record is implicitly final, so you cannot make a record abstract, sealed, or unsealed.
-       Nested records are implicitly static. */
+    /* Nested records are implicitly static.
+       A record is allowed to implement interfaces and may inherit default methods from that interface. */
     public static final record Student2(int id, String name, String address) implements Person { };
 
     public static void main(String[] args) {
 
+        System.out.println();
         /* There is no difference in how you use a record because it's nothing more than an immutable class.
            For example, here is how to instantiate a Student record and access its field.
-           The compiler provides accessor methods for all of the component fields automatically.
-           The name and the return type of an accessor method are the same as the name and type of the field. */
+           The compiler provides accessor methods for all of the component fields automatically, the name and the return
+           type of an accessor method are the same as the name and type of the field. */
         Student student = new Student(1, "Bob Smith", "123 Main Street");
         System.out.println(student.name()); // Observe that it is not getName() but just name()
     }
