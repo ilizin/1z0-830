@@ -25,8 +25,7 @@ public class SwitchPatternMatching {
 
         System.out.println();
         /* The switch statement with the old syntax requires a break statement for each case block, the "fall through"
-           behavior is not permitted when using pattern matching, so, a break statement is required in each case block
-           in the old syntax.
+           behavior is not permitted when using pattern matching.
            If object2 points to an Integer and if the first case is allowed to fall through to the second one,
            there will be a problem because the second case block expects str to be initialized to point to a String */
         Object object2 = 10;
