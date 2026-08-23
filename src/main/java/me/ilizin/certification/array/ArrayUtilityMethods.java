@@ -2,39 +2,36 @@ package me.ilizin.certification.array;
 
 import java.util.Arrays;
 
-public class CompareAndMismatch {
+public class ArrayUtilityMethods {
 
     public static void main(String[] args) {
+
+        System.out.println();
         /* Finds and returns the index of the first mismatch between two int arrays, otherwise return -1 if no mismatch
            is found. The index will be in the range of 0 (inclusive) up to the length (inclusive) of the smaller array.
            If the two arrays share a common prefix then the returned index is the length of the common prefix.
            If one array is a proper prefix of the other than the returned index is the length of the smaller array.
            Otherwise, there is no mismatch. */
-
         int[] ia1 = { 0, 1, 2, 6 };
         int[] ia2 = { 0, 1, 5 };
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints 2
-
         ia1 = new int[]{ 0, 1, 5, 6 };
         ia2 = new int[]{ 0, 1, 5 };
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints 3
-
         ia1 = new int[0];
         ia2 = new int[0];
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints -1
-
         ia1 = new int[]{ 0, 1, 5, 6 };
         ia2 = new int[]{ 1, 1, 5, 6 };
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints 0
-
         ia1 = new int[]{ 0, 1, 5, 6 };
         ia2 = new int[]{ 0, 1, 5, 6 };
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints -1
-
         ia1 = new int[]{ 0, 1, 5, 6 };
         ia2 = new int[]{ 0, 1, 5, 7 };
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints 3
 
+        System.out.println();
         /* Compares two int arrays lexicographically. If the two arrays share a common prefix then the lexicographic
            comparison is the result of comparing two elements, as if by Integer.compare(int, int), at an index within
            the respective arrays that is the prefix length. Otherwise, one array is a proper prefix of the other and,
@@ -46,27 +43,23 @@ public class CompareAndMismatch {
         ia1 = new int[]{ 0, 1, 2, 6};
         ia2 = new int[]{ 0, 1, 5};
         System.out.println(Arrays.compare(ia1, ia2)); //prints -1
-
         ia1 = new int[]{ 0, 1, 5, 6};
         ia2 = new int[]{ 0, 1, 5};
         System.out.println(Arrays.compare(ia1, ia2)); //prints 1
-
         ia1 = new int[]{ 0, 1, 5, 6};
         ia2 = new int[]{ 0, 1, 5, 6};
         System.out.println(Arrays.compare(ia1, ia2)); //prints 0
-
         ia1 = null;
         ia2 = new int[]{ 0, 1, 5, 6};
         System.out.println(Arrays.compare(ia1, ia2)); //prints -1
-
         ia1 = new int[]{ 0, 1, 5, 6};
         ia2 = null;
         System.out.println(Arrays.compare(ia1, ia2)); //prints 1
-
         ia1 = null;
         ia2 = null;
         System.out.println(Arrays.compare(ia1, ia2)); //prints 0
 
+        System.out.println();
         /* Java standard library does include a utility class named Arrays in package java.util, it contains a large number
         of static utility methods for manipulating any given array object. Arrays.toString method prints the contents of an array.
         Besides those, it also has equals and deepEquals methods that let you compare two arrays based on their content. */
