@@ -66,5 +66,20 @@ public class CompareAndMismatch {
         ia1 = null;
         ia2 = null;
         System.out.println(Arrays.compare(ia1, ia2)); //prints 0
+
+        /* Java standard library does include a utility class named Arrays in package java.util, it contains a large number
+        of static utility methods for manipulating any given array object. Arrays.toString method prints the contents of an array.
+        Besides those, it also has equals and deepEquals methods that let you compare two arrays based on their content. */
+        Integer[] test1 = {2, 3, 4, 5};
+        Integer[] test2 = {2, 3, 4, 5};
+        System.out.println(Arrays.equals(test1, test2)); // true
+        test2[0] = 0;
+        System.out.println(Arrays.equals(test1, test2)); // false
+        test1 = null; test2 = null;
+        System.out.println(Arrays.equals(test1, test2)); // true
+        Integer[][] test11 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
+        Integer[][] test12 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
+        System.out.println(Arrays.equals(test11, test12)); // false
+        System.out.println(Arrays.deepEquals(test11, test12)); // true
     }
 }
