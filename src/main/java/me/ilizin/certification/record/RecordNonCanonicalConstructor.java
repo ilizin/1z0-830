@@ -18,7 +18,7 @@ public class RecordNonCanonicalConstructor {
             // this(0); Not allowed, it's detected as a recursive constructor call
             this(checkId(whatever), name.trim(), "DUMMY");
             /* component fields of this record are already set at this point */
-            // this.name = "Dummy";
+            // this.name = "Dummy"; // Invalid
             /* Valid but name refers to the constructor parameter and updating it has no impact on the component field */
             name = "Dummy";
         }
