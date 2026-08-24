@@ -48,33 +48,33 @@ public class LambdaExpression {
         /* We want to get the details of all cars from a particular company and to do that, we define a CompanyFilter
         class that contains the actual logic for filtering cars based on company name. At run time, it creates a
         CompanyFilter object and passes it to CarMall's showCars method, which returns a filtered list of cars. */
+        System.out.println();
         CarMall cm = new CarMall();
         CarFilter cf = new CompanyFilter("Honda");
         List<Car> carsByCompany = cm.showCars(cf);
         System.out.println(carsByCompany);
 
-        /* The following code that uses a lambda expression.
-        There is no separate class that implements CarFilter and there is no explicit instantiation
-        of a CarFilter object either. Both of these tasks have been replaced by a very short statement
-        c -> c.company.equals("Honda") named lambda expression which is just a shortcut for the compiler. */
-        cm = new CarMall();
-        carsByCompany = cm.showCars(c -> c.company.equals("Honda"));
-        System.out.println(carsByCompany);
+        /* The following code uses a lambda expression, there is no separate class that implements CarFilter and there
+        is no explicit instantiation of a CarFilter object either. Both of these tasks have been replaced by a very
+        short statement c -> c.company.equals("Honda") named lambda expression which is just a shortcut for the compiler.
 
-        /* All the information that is required is available in the context of cm.showCars(...) method. The compiler knows
+        All the information that is required is available in the context of cm.showCars(...) method. The compiler knows
         that it must pass an object of a class that implements CarFilter to the showCars(CarFilter cf) method. It knows
         that this class must implement the boolean showCar(Car c) method because that is the only abstract method
         declared in the CarFilter interface.
         The compiler gathers from the signature of this method that this method receives an argument of type Car and
-        returns a boolean. From this information, it can easily generate the following code on its own:
+        returns a boolean. From this information, it can easily generate the following code on its own
 
         //assume that this fictional class is created by the compiler.
         class XYZ implements CarFilter {
         public boolean showCar(Car <<parameterName>>) {
             return <<an expression that returns a boolean must appear here>>;
-        }
+        }*/
+        System.out.println();
+        carsByCompany = cm.showCars(c -> c.company.equals("Honda"));
+        System.out.println(carsByCompany);
 
-        The lambda expression does not specify the method name, the parameter types, and the return type.
+        /* The lambda expression does not specify the method name, the parameter types, and the return type.
         The compiler infers them from the context in which you put the lambda expression.
         Thus, a lambda expression must exist within a context that can supply all this information.
 
@@ -88,11 +88,13 @@ public class LambdaExpression {
         and Java has a special name for such an interface: Functional Interface. */
 
         /* Before lambda expression were introduced in Java, people used anonymous classes to achieve the same.
-          The following is how you could implement a CarFilter the old way: */
-        carsByCompany = cm.showCars(new CarFilter(){
+          The following is how you could implement a CarFilter the old way */
+        System.out.println();
+        carsByCompany = cm.showCars(new CarFilter() {
             public boolean showCar(Car c){
                 return "Honda".equals(c.company());
             }
         });
+        System.out.println(carsByCompany);
     }
 }
