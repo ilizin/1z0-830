@@ -45,15 +45,16 @@ public class LambdaExpression {
 
     public static void main(String[] args) {
 
+        System.out.println();
         /* We want to get the details of all cars from a particular company and to do that, we define a CompanyFilter
         class that contains the actual logic for filtering cars based on company name. At run time, it creates a
         CompanyFilter object and passes it to CarMall's showCars method, which returns a filtered list of cars. */
-        System.out.println();
         CarMall cm = new CarMall();
         CarFilter cf = new CompanyFilter("Honda");
         List<Car> carsByCompany = cm.showCars(cf);
         System.out.println(carsByCompany);
 
+        System.out.println();
         /* The following code uses a lambda expression, there is no separate class that implements CarFilter and there
         is no explicit instantiation of a CarFilter object either. Both of these tasks have been replaced by a very
         short statement c -> c.company.equals("Honda") named lambda expression which is just a shortcut for the compiler.
@@ -70,7 +71,6 @@ public class LambdaExpression {
         public boolean showCar(Car <<parameterName>>) {
             return <<an expression that returns a boolean must appear here>>;
         }*/
-        System.out.println();
         carsByCompany = cm.showCars(c -> c.company.equals("Honda"));
         System.out.println(carsByCompany);
 
@@ -87,9 +87,9 @@ public class LambdaExpression {
         A lambda expression can be written only where the target type is an interface with exactly one abstract method,
         and Java has a special name for such an interface: Functional Interface. */
 
+        System.out.println();
         /* Before lambda expression were introduced in Java, people used anonymous classes to achieve the same.
           The following is how you could implement a CarFilter the old way */
-        System.out.println();
         carsByCompany = cm.showCars(new CarFilter() {
             public boolean showCar(Car c){
                 return "Honda".equals(c.company());

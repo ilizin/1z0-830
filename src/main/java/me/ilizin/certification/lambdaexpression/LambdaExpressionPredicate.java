@@ -38,58 +38,59 @@ public class LambdaExpressionPredicate {
        If the name of that class a Predicate is typed to is T, then the method test will accept an object of type T
        and return a boolean.
        The above showCars code is the same as previous one. But by using the Predicate interface instead of writing a custom
-       interface, we have eliminated another three lines of code.
-     */
-
+       interface, we have eliminated another three lines of code. */
     public static void main(String[] args) {
-        CarMall cm = new CarMall();
 
+        System.out.println();
         /* There is no change in the code that calls showCars method. The lambda expression that we used earlier, i.e.,
            cm.showCars(c -> c.company.equals("Honda")) works for this new method as well. It works because the
            lambda expression never required us to use the name of any interface or method. Lambda expression
            was not tied to a particular interface or method. It was only tied to a particular behavior, to a method
            that takes Car as an argument and returns a boolean. */
-        cm.showCars(c -> c.company.equals("Honda"));
+        CarMall cm = new CarMall();
+        List<Car> carsByCompany = cm.showCars(c -> c.company.equals("Honda"));
+        System.out.println(carsByCompany);
 
+        System.out.println();
         /* The Predicate interface has three default methods and one static method in addition to the abstract test method.
-           They have nothing to do with lambda expressions. You will notice that these methods are basically just helpful
-           utility methods.
-
+           You will notice that these methods are basically just helpful utility methods.
            1. default Predicate<T> and(Predicate<? super T> other):
                 Returns a composed predicate that represents a short-circuiting logical AND of this predicate and another. */
         Predicate<Car> p1 = c -> c.company.equals("Honda");
         Predicate<Car> p2 = c -> c.price > 20000.0;
-
         Car c = new Car("Honda", 2012, 9000.0, "HATCH");
         if(p1.test(c) && p2.test(c)) {
             System.out.println("yes");
         }
-
         /* You could combine the two predicates into one and use only one call to test. */
         Predicate<Car> p3 = p1.and(p2);
         if (p3.test(c)) {
             System.out.println("yes");
         }
 
+        System.out.println();
         /* 2. default Predicate<T> negate():
                 Returns a predicate that represents the logical negation of this predicate. */
-           Predicate<Car> p = c2 -> c2.price < 20000;
-           Predicate<Car> notP = p.negate();
+        Predicate<Car> p = c2 -> c2.price < 20000;
+        Predicate<Car> notP = p.negate();
+        System.out.println(notP.test(c));
 
+        System.out.println();
         /* 3. default Predicate<T> or(Predicate<? super T> other):
                 Returns a composed predicate that represents a short-circuiting logical OR of this predicate and another. */
         Predicate<Car> isHonda = c3 -> c3.company.equals("Honda");
         Predicate<Car> isToyota = c4 -> c4.company.equals("Toyota");
         Predicate<Car> isHondaOrToyota = isHonda.or(isToyota);
+        System.out.println(isHondaOrToyota.test(c));
 
+        System.out.println();
         /* 4. static <T> Predicate<T> isEqual(Object targetRef):
                 Returns a predicate that tests if two arguments are equal according to Objects.equals(Object, Object).
               For example, normally, you would compare two Car objects using c1.equals(c2).
               You could create a Predicate out of the equals method like this and then compare c with other Car objects
               using this Predicate, i.e., equals.test(c2). */
-
         Predicate equals = Predicate.isEqual(c);
         Car c2 = new Car("Honda", 2012, 9000.0, "HATCH");
-        equals.test(c2);
+        System.out.println(equals.test(c2));
     }
 }
