@@ -16,10 +16,18 @@ public class ResourceBundleForNoDefaultLocale {
        If getBundle is not able to find any properties file that it can use to create any bundle at all. Well, in that
        case it throws a MissingResourceException. */
     public static void main(String[] args) {
+
         System.out.println();
         java.util.ResourceBundle rb = java.util.ResourceBundle.getBundle("helloapp", Locale.of("hi", "IN"));
         Console c = System.console();
-        String name = c.readLine(rb.getString("What is your name?")+" ");
+        String name = c.readLine(rb.getString("What is your name?") + " ");
+        /* Loading a resource bundle and looking up the key in a resource bundle
+           are two separate and independent steps. If a properties file for the non-default locale is present, then
+           a resource bundle will be created using that file as explained in the previous section. The key lookup in
+           the non-default bundle will happen in this non-default bundle hierarchy only and if the key is not found in
+           it, a MissingResourceException will be thrown. The key will NOTbe looked up in the resource bundle hierarchy
+           of the default locale. The resource bundle hierarchy of the default locale is used only when no locale
+           specific resource bundle is found. */
         String greetings = rb.getString("Hi");
         System.out.println(greetings + " " + name);
     }

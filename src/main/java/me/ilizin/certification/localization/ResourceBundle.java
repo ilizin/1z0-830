@@ -32,13 +32,18 @@ public class ResourceBundle {
            as helloapp_fr_FR.
            */
         System.out.println();
-        /* The ResourceBundleclass has several overloaded staticget Bundle methods out of which two are particularly
+        /* The ResourceBundle class has several overloaded static get Bundle methods out of which two are particularly
            important - getBundle(String baseName) and getBundle(String baseName, Locale locale). The former returns a
            ResourceBundle for the user's default locale while the later returns a ResourceBundle for the given locale.
            The baseName is the common name of the all the resource bundles of a family as explained before. */
         java.util.ResourceBundle rb = java.util.ResourceBundle.getBundle("helloapp");
         Console c = System.console();
         String name = c.readLine(rb.getString("What is your name?")+" ");
+        /* To look up a key in a ResourceBundle, you need to first get hold of a ResourceBundle that you are interested
+           in using one of the getBundle methods and then call one of the following three getXXX methods on that resource bundle:
+                1. String getString(String key): Gets a string for the given key from this resource bundle or one of its parents.
+                2. String[] getStringArray(String key): Gets a string array for the given key from this resource bundle or one of its parents.
+                3. Object getObject(String key): Gets an object for the given key from this resource bundle or one of its parents. */
         String greetings = rb.getString("Hi");
         System.out.println(greetings + " " + name);
     }
