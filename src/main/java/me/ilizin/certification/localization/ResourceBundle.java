@@ -32,7 +32,7 @@ public class ResourceBundle {
            as helloapp_fr_FR.
            */
         System.out.println();
-        /* The ResourceBundleclass has several overloaded staticgetBundle methods out of which two are particularly
+        /* The ResourceBundleclass has several overloaded staticget Bundle methods out of which two are particularly
            important - getBundle(String baseName) and getBundle(String baseName, Locale locale). The former returns a
            ResourceBundle for the user's default locale while the later returns a ResourceBundle for the given locale.
            The baseName is the common name of the all the resource bundles of a family as explained before. */
