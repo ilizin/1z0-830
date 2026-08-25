@@ -23,6 +23,7 @@ public class LocalizingDate {
         DateTimeFormatter also has a ofPattern method, which can format the LocalDate/Time objects for any given Locale. */
         Locale frFR = Locale.of("fr", "Fr");
         Locale enUS = Locale.of("en", "US");
+        /* The formatter returned directly by this method will use the default FORMAT locale */
         DateTimeFormatter dfLocal = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
         System.out.println(dfLocal.format(LocalDate.of(2024, 12, 1)));
         System.out.println(dfLocal.format(LocalDateTime.of(2024, 12, 1, 11, 0)));
@@ -31,6 +32,7 @@ public class LocalizingDate {
         } catch (UnsupportedTemporalTypeException ex) {
             System.out.println("UnsupportedTemporalTypeException");
         }
+
         dfLocal = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
         try {
             System.out.println(dfLocal.format(LocalDate.of(2024, 12, 1)));
@@ -39,11 +41,15 @@ public class LocalizingDate {
         }
         System.out.println(dfLocal.format(LocalDateTime.of(2024, 12, 1, 11, 0)));
         System.out.println(dfLocal.format(LocalTime.of(11, 0)));
-
         DateTimeFormatter dfFr = DateTimeFormatter.ofPattern("dd MMM uuuu", frFR);
         System.out.println(dfFr.format(LocalDate.of(2024, 12, 1)));
         DateTimeFormatter dfUs = DateTimeFormatter.ofPattern("dd MMM uuuu", enUS);
         System.out.println(dfUs.format(LocalDate.of(2024, 12, 1)));
+        try {
+            System.out.println(dfUs.format(LocalTime.of(11, 0)));
+        } catch (UnsupportedTemporalTypeException ex) {
+            System.out.println("UnsupportedTemporalTypeException");
+        }
 
         System.out.println();
         /* JDK has a java.text.DateFormat class, which is similar to the java.text.NumberFormat and can be used for

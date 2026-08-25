@@ -69,6 +69,14 @@ public class Localization {
         System.out.println(l2.getLanguage() + " - " + l2.getCountry());
 
         System.out.println();
+        /* Locale.of (or new Locale) accepts any string for language and country codes without checking if they are
+           Java does not verify your made-up codes against official standards like ISO 639 or ISO 3166 */
+        l1 = new Locale.Builder().setLanguage("zz").setRegion("ZZ").build();
+        System.out.println(l1);
+        l1 = Locale.of("uu", "UU");
+        System.out.println(l1);
+
+        System.out.println();
         /* Locale overrides the toString method to return a string representation of the Locale. As per JavaDoc,
            it returns language + "_" + country + "_" + (variant + "_#" | "#") + script + "_" + extensions.
            Language is always lower case, country is always upper case, script is always title case (a style of

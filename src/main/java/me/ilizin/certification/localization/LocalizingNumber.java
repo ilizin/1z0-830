@@ -1,23 +1,13 @@
 package me.ilizin.certification.localization;
 
-import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
-import java.time.temporal.UnsupportedTemporalTypeException;
-import java.util.Date;
 import java.util.Locale;
 
 public class LocalizingNumber {
 
     /* People in different regions see numbers formatted differently. The JDK provides an abstract class
-       java.text.NumberFormatter that can format a number as per the local standard. */
+       java.text.NumberFormat that can format a number as per the local standard. */
     public static void main(String[] args) {
 
         System.out.println();
@@ -33,19 +23,28 @@ public class LocalizingNumber {
         NumberFormat nfDefault = NumberFormat.getCurrencyInstance();
         System.out.println("US:" + nfUs.format(oneMillion)); //prints US:$1,000,000.00
         System.out.println("France:" + nfFr.format(oneMillion)); //prints France:1 000 000,00 €
-        System.out.println("Default:" + nfDefault.format(oneMillion)); //prints France:1 000 000,00 €
+        System.out.println("Default:" + nfDefault.format(oneMillion));
 
         nfUs = NumberFormat.getPercentInstance(enUS);
         nfFr = NumberFormat.getPercentInstance(frFR);
+        nfDefault = NumberFormat.getPercentInstance();
         System.out.println("US:"  + nfUs.format(0.1)); //prints US:10%
         System.out.println("France:" + nfFr.format(0.1)); //prints France:10 %
+        System.out.println("Default:" + nfDefault.format(0.1));
 
         NumberFormat nfC = NumberFormat.getCompactNumberInstance(); //get NumberFormat for the default locale
         System.out.println("Default Locale (Compact):" + nfC.format(oneMillion)); //prints Default Locale (Compact):10L
+        // nfC = NumberFormat.getCompactNumberInstance(NumberFormat.Style.SHORT); // Style is not allowed
         nfC = NumberFormat.getCompactNumberInstance(enUS, NumberFormat.Style.SHORT);
+        // nfC = NumberFormat.getCompactNumberInstance(enUS); // Style is mandatory
         System.out.println("en_US (Compact):" + nfC.format(oneMillion)); //prints en_US (Compact):1M
         nfC = NumberFormat.getCompactNumberInstance(frFR, NumberFormat.Style.SHORT);
         System.out.println("fr_FR (Compact):" + nfC.format(oneMillion)); //prints fr_FR (Compact):1 M
+        nfC = NumberFormat.getCompactNumberInstance(enUS, NumberFormat.Style.LONG);
+        // nfC = NumberFormat.getCompactNumberInstance(enUS); // Style is mandatory
+        System.out.println("en_US (Long):" + nfC.format(oneMillion)); //prints en_US (Compact):1M
+        nfC = NumberFormat.getCompactNumberInstance(frFR, NumberFormat.Style.LONG);
+        System.out.println("fr_FR (Long):" + nfC.format(oneMillion)); //prints fr_FR (Compact):1 M
 
         System.out.println();
         try {
