@@ -24,8 +24,12 @@ public class MessageFormatWithResourceBundle {
 
            A serious issue with MessageFormat is that it was created before the introduction of the java.time package
            and hasn't been updated to work with the new LocalDate/Time classes. So, if you want to use dates as
-           arguments, you have to use java.util.Date objects.*/
-        MessageFormat.format(rb.getString("yourbalanceis2"), new Object[]{new Date(), 100});
+           arguments, you have to use java.util.Date objects.
+
+           FormatElement: { ArgumentIndex } { ArgumentIndex , FormatType } { ArgumentIndex , FormatType , FormatStyle }
+           FormatType: number date time choice
+           FormatStyle: short medium long full integer currency percent SubformatPattern */
+        message = MessageFormat.format(rb.getString("yourbalanceis2"), new Object[]{new Date(), 100});
         System.out.println(message);
     }
 }
