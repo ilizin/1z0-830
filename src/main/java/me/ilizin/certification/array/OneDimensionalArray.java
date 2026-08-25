@@ -6,14 +6,14 @@ public class OneDimensionalArray {
 
     private static class MyClass {}
 
-    /* Arrays are quite powerful as a data structure but they are somewhat primitive as a data type.
+    /* Arrays are quite powerful as a data structure, but they are somewhat primitive as a data type.
      Arrays have only one field and merely a couple of methods. But because of their simplicity, arrays are used as building
-     blocks for other data types and data structures. For example, the String and ArrayList data type is built upon an array of chars */
+     blocks for other data types and data structures. For example ArrayList and the String data type is built upon an array of chars */
     public static void main(String[] args) {
 
         /* An array is an object that holds a fixed number of values of a given type. An array of a given type cannot
            hold anything else except values of that type. An array declaration can never include the size of the array.
-           Java allows you to apply square brackets to the variable name instead of type name as well. */
+           Java allows you to apply square brackets to the variable name and a type name as well. */
         int i; // i is an int
         int[] ia1, ia2;  // ia1 and ia2 are one dimensional arrays of ints
         int[][] iaa;  // iaa is a two-dimensional array of ints
@@ -57,7 +57,7 @@ public class OneDimensionalArray {
         System.out.println(ia6.getClass().getName() + " , " + ia6.getClass().getSuperclass().getName()); // [I , java.lang.Object
         System.out.println(ba6.getClass().getName() + " , " + ba6.getClass().getSuperclass().getName()); // [Z , java.lang.Object
         System.out.println(stra6.getClass().getName() + " , " + stra6.getClass().getSuperclass().getName()); // [Ljava.lang.String; , java.lang.Object
-        System.out.println(ta.getClass().getName() + " , " + ta.getClass().getSuperclass().getName()); // [LTestClass; , java.lang.Object
+        System.out.println(ta.getClass().getName() + " , " + ta.getClass().getSuperclass().getName()); // [LMyClass; , java.lang.Object
 
         System.out.println();
         /* It is possible to create array objects without using the new keyword. The parts on the right-hand side of the =
@@ -70,7 +70,7 @@ public class OneDimensionalArray {
         int iap2;
         // iap2 = {1, 2}; // Array initializer is not allowed here, it goes with the array declaration always.
         // It is prohibited to specify the size if you are specifying individual elements.
-        // int[] ia = new int[2]{ 1, 2 }; // Will not compile.
+        //int[] ia7 = new int[2]{ 1, 2 }; // Will not compile.
         System.out.println(Arrays.toString(ia9));
         System.out.println(Arrays.toString(str));
         System.out.println(Arrays.toString(iap));
@@ -129,8 +129,10 @@ public class OneDimensionalArray {
         System.out.println(na[0]);
         na = new Integer[10];
         na[0] = 1;
-        System.out.println(na[0]);
         // na[0] = 1.2f; System.out.println(na[0]); // It fails a runtime
+        System.out.println(na[0]);
+        // Float[] fa = new Integer[3]; // Invalid
+        Object[] oa = new Float[3];
 
         System.out.println();
         /* The second is that arrays are "reified". Meaning, the type information of an array object is preserved in the

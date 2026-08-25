@@ -8,17 +8,14 @@ public class Localization {
        countries with different languages.
        Since the regions and languages of the users of the application cannot always be known at the time of development
        of the application, it is almost impossible to hardcode region specific formats and texts in the application itself.
-       It is better for the application to not assume any language at all and use the facilities of the run time environment
-       to localize the messages.
+
        An application is packaged with multiple resource bundles, but at run time, it detects the user's region and uses
        the resource bundle specific to that region to translate the messages. Such an application does not require any
        code change to be ported into different regions and is, therefore, called "internationalized" .*/
     public static void main(String[] args) {
 
+        System.out.println();
         /* A user's region (the word region and country are used interchangeably in this context) and language specific
-           information is captured by the java.util.Locale class. It has several methods such as getCountry()
-           and getLanguage() that return specific details of the region that it represents.
-           A user's region (the word region and country are used interchangeably in this context) and language specific
            information is captured by the java.util.Locale class. It has several methods such as getCountry()
            and getLanguage() that return specific details of the region that it represents.
 
@@ -28,14 +25,13 @@ public class Localization {
            Category is helpful when the application needs to make a distinction between the two types of customizations.
            For example, an application may want to display UI controls in local language Hindi but wants to generate
            reports in English. Whenever the category is not specified, FORMAT is assumed. */
-
         /* User's locale can be retrieved using these methods */
         System.out.println(Locale.getDefault());
         System.out.println(Locale.getDefault(Locale.Category.DISPLAY));
         System.out.println(Locale.getDefault(Locale.Category.FORMAT));
 
+        System.out.println();
         // Many applications provide the user with an option to change their default locale.
-
         Locale.setDefault(Locale.of("en", "US"));
         System.out.println(Locale.getDefault());
         System.out.println(Locale.getDefault(Locale.Category.DISPLAY));
@@ -47,20 +43,22 @@ public class Localization {
         System.out.println(Locale.getDefault(Locale.Category.DISPLAY));
         System.out.println(Locale.getDefault(Locale.Category.FORMAT));
 
-        /* A Locale object can be created using Locale.Builder or using overloaded static factory methods named of
-        the Locale class. Locale's constructors are deprecated and can be ignored. */
+        System.out.println();
+        /* A Locale object can be created using Locale.Builder or using overloaded static factory methods of  the Locale class.
+           Locale's constructors are deprecated and can be ignored. */
         Locale enUs = new Locale.Builder().setLanguage("en").setRegion("US").build();
         Locale hi = Locale.of("hi"); // Language Hindi
         Locale hiIn = Locale.of("hi", "IN"); // Language Hindi, country India
+        System.out.println(enUs);
         System.out.println(hi);
         System.out.println(hiIn);
 
         System.out.println();
-        /* Locale also defines several public static constants for countries and languages */
-        /* Observe that Builder's has a setRegion (and not setCountry) method but this API treats region and country
-        as the same but may not always have values for all of the details of the location that it represents.
-        For example, Locale.CHINESE is a Locale that represents just the CHINESE language, and calling getCountry()
-        will return an empty string (not null).*/
+        /* Locale also defines several public static constants for countries and languages.
+           Observe that Builder's has a setRegion (and not setCountry) method but this API treats region and country
+           as the same but may not always have values for all of the details of the location that it represents.
+           For example, Locale.CHINESE is a Locale that represents just the CHINESE language, and calling getCountry()
+           will return an empty string (not null).*/
         System.out.println(Locale.CHINESE);
         System.out.println(Locale.US);
         /* Similarly, a calling getLanguage() on a Locale built using only setRegion() on a builder will return "" */
@@ -72,10 +70,10 @@ public class Localization {
 
         System.out.println();
         /* Locale overrides the toString method to return a string representation of the Locale. As per JavaDoc,
-            it returns language + "_" + country + "_" + (variant + "_#" | "#") + script + "_" + extensions.
-            Language is always lower case, country is always upper case, script is always title case (a style of
-            capitalization where you capitalize the first letter of major words in a title or headline), and extensions
-            are always lower case. */
+           it returns language + "_" + country + "_" + (variant + "_#" | "#") + script + "_" + extensions.
+           Language is always lower case, country is always upper case, script is always title case (a style of
+           capitalization where you capitalize the first letter of major words in a title or headline), and extensions
+           are always lower case. */
         System.out.println(Locale.GERMANY);
         System.out.println(Locale.FRANCE);
     }

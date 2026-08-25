@@ -11,7 +11,7 @@ public class ArrayUtilityMethods {
            is found. The index will be in the range of 0 (inclusive) up to the length (inclusive) of the smaller array.
            If the two arrays share a common prefix then the returned index is the length of the common prefix.
            If one array is a proper prefix of the other than the returned index is the length of the smaller array.
-           Otherwise, there is no mismatch. */
+           Otherwise, there is no mismatch. There are a bunch of overloaded mismatch methods. */
         int[] ia1 = { 0, 1, 2, 6 };
         int[] ia2 = { 0, 1, 5 };
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints 2
@@ -30,6 +30,7 @@ public class ArrayUtilityMethods {
         ia1 = new int[]{ 0, 1, 5, 6 };
         ia2 = new int[]{ 0, 1, 5, 7 };
         System.out.println(Arrays.mismatch(ia1, ia2)); // prints 3
+        // System.out.println(Arrays.mismatch(ia1, null)); // throw a NullPointerException
 
         System.out.println();
         /* Compares two int arrays lexicographically. If the two arrays share a common prefix then the lexicographic
@@ -72,7 +73,11 @@ public class ArrayUtilityMethods {
         System.out.println(Arrays.equals(test1, test2)); // true
         Integer[][] test11 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
         Integer[][] test12 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
+        Integer[][] test13 = { { 1, 2, 3 }, { 3, 4, 5 } };
+        Integer[][] test14 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 9 } };
         System.out.println(Arrays.equals(test11, test12)); // false
         System.out.println(Arrays.deepEquals(test11, test12)); // true
+        System.out.println(Arrays.deepEquals(test11, test13)); // false
+        System.out.println(Arrays.deepEquals(test11, test14)); // false
     }
 }

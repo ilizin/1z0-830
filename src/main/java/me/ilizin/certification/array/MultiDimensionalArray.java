@@ -41,13 +41,17 @@ public class MultiDimensionalArray {
         System.out.println();
         /* This statement uses an array creation expression coupled with array initializer. */
         int[][] iaa5 = new int[][]{ new int[]{ 1, 2 } };
+        int[][] iaa5a = { new int[]{ 1, 2 } };
         int[][] iaa6 = { { 1, 2 } }; // This is the same as above but with array initializer.
+        int[][] iaa6a = { new int[]{ 1, 2 } };
         System.out.println(Arrays.toString(iaa5));
         System.out.println(Arrays.toString(iaa6));
 
         /* Every array is an object, this means, you can assign any array object to variable of type Object */
         int[] intArray = new int[]{ 0, 1, 2 };
+        int[][] intArray1 = new int[][]{ { 0, 1, 2 } };
         Object obj = intArray;
+        obj = intArray1;
         System.out.println(Arrays.toString(intArray));
         /* This will not compile because elements of the array pointed to by intArray are not Objects. They are ints. */
         // Object[] oa = intArray;
