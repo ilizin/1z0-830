@@ -143,6 +143,76 @@ public class InterfaceImplementation {
         }
     }
 
+    interface Activity8{
+        long SIZE = 20;
+    }
+    interface Task8 {
+        long SIZE = 30;
+    }
+    /* Fields of an interface are inherited by a sub class and therefore Process8 does get two versions of SIZE
+       variable. Java allows a class to inherit multiple fields with the same name as long as you don't try to use
+       those fields ambiguously. */
+    class Process8 implements Task8, Activity8 {
+        public static void test(){
+            // System.out.println(SIZE); //will not compile
+            System.out.println(Task8.SIZE);
+            System.out.println(Activity8.SIZE);
+        }
+    }
+
+    interface Readable1 {
+        int SIZE = 0;
+        void read();
+    }
+    interface Writable1 {
+        void write();
+    }
+    /* It is possible for an interface to extend any number of interfaces. A class cannot extend an interface, it can
+       only implement an interface. Whereas, an interface cannot implement any interface it can only extend an
+       interface. The extending interface inherits all the members except static methods of each of the other extended
+       interfaces. */
+    interface ReadWritable extends Readable1, Writable1 {
+        //inherits SIZE and read() from Readable
+        //inherits write() from Writable
+        void delete();
+    }
+
+    interface Readable2 {
+        int SIZE = 10;
+        void read();
+        static void staticMethod(){
+            System.out.println("In Readable.staticMethod");
+        };
+        default void defaultMethod(){
+            System.out.println("In Readable.defaultMethod");
+        };
+    }
+    interface Writable2 {
+        int SIZE = 20;
+        void write();
+        static void staticMethod(){
+            System.out.println("In Writable.staticMethod");
+        };
+
+        /* commenting the following two methods out
+        default void defaultMethod() {
+            System.out.println("In Writable.defaultMethod");
+        };
+        void defaultMethod(); */
+    }
+    /* It is possible for an interface to inherit a field or an abstract method with the same signature from two of
+       its super interfaces. But inheriting multiple default methods or one default and one or more abstract methods
+       with the same signature, Java does not allow it. If you uncomment either of the defaultMethods in Writable2,
+       ReadWritable2 will fail to compile because it would be inheriting two different implementations (or one
+       implementation and one declaration) of defaultMethod, and ReadWritable2 must provide its own implementation
+       of the defaultMethod to resolve the ambiguity.
+       Observe that staticMethod is also defined in both the super interfaces but it does not cause any problem because
+       static methods of an interface are never inherited, which means ReadWritable2 does not get even a single
+       implementation of staticMethod from either of its superinterfaces. */
+    interface ReadWritable2 extends Readable2, Writable2 {
+        //inherits SIZE, read(), and defaultMethod() from Readable
+        //inherits SIZE and write() from Writable
+    }
 
     public static void main(String[] args) {
 
