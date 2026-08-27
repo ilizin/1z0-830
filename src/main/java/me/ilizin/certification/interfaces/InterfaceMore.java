@@ -3,14 +3,14 @@ package me.ilizin.certification.interfaces;
 public class InterfaceMore {
 
     /* Any interface that has exactly one abstract method is a functional interface. It may have other private,
-       static, or default methods but it must have one and only one abstract method. This abstract method is also
+       static, or default methods, but it must have one and only one abstract method. This abstract method is also
        called the "functional method" of that functional interface. */
     @FunctionalInterface
-    interface Mover1{
+    interface Mover1 {
         void move(int x, int y);
     }
     @FunctionalInterface
-    interface Mover2{
+    interface Mover2 {
         void move(int x, int y);
         default void no_op(){ System.out.println("do nothing"); }
     }
@@ -41,8 +41,8 @@ public class InterfaceMore {
        abstract in the first place. Therefore, they cannot be instantiated. The below  code seems to be instantiating
        Animal even though Animal is abstract! */
     static abstract class Animal {
-        public static void main(String[] args){
-            Animal a = new Animal(){  };
+        public static void main(String[] args) {
+            Animal a = new Animal() {  };
         }
     }
     /* The following is an example that seems to instantiate an interface. You should observe is the presence of { }
@@ -53,7 +53,7 @@ public class InterfaceMore {
        When the compiler sees this code, it actually creates a class, gives this class a weird looking name, and
        generates a separate a class file for this class. Since Animal class doesn't have any abstract method, this
        anonymous class doesn't need to implement any method. */
-    interface Dummy{
+    interface Dummy {
     }
     public class TestClass {
         public static void main(String[] args){
@@ -62,6 +62,5 @@ public class InterfaceMore {
     }
 
     public static void main(String[] args) {
-
     }
 }

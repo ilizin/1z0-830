@@ -12,19 +12,21 @@ public class InterfaceImplementation {
     }
     /* A class can implement any number of interfaces by specifying their names in its implements clause. For
        example, in the following code the Price class implements two interfaces.
-        Of course, once a class declares that it implements an interface, it must then have the implementation for all
-        of the abstract methods declared in that interface */
+       Of course, once a class declares that it implements an interface, it must then have the implementation for all
+       of the abstract methods declared in that interface */
     class Price implements Movable, Readable {
 
-        /* The method must be explicitly defined as publicbecause abstract methods of an interface are implicitly public
+        /* The method must be explicitly defined as public because abstract methods of an interface are implicitly public
            and you cannot reduce accessibility of a method. */
         public void move() { System.out.println("Moving..."); }
         /* Although not mandatory, it is a good practice to apply @Override annotation to the method in the class. */
         @Override
         public void read() { System.out.println("Reading..."); }
-        /* The return type must be covariantwith the return type declared by the interface method just like when
+        /* The return type must be covariant with the return type declared by the interface method just like when
            overriding a method.  */
-        public Integer sum() { return 0; }
+        public Integer sum() throws RuntimeException {
+            return 0;
+        }
         /* The throws clause must be compatible with the throws clause of the interface method, therefore the same
            exception or a child exception */
         public Number sum2() throws IllegalArgumentException, RuntimeException {
@@ -114,7 +116,7 @@ public class InterfaceImplementation {
     }
 
     /* When a class inherits a method from its superclass and also from an interface that it implements, the version that
-      it inherits from a superclass overrides the default method defined in any of the interfaces that it implements. */
+       it inherits from a superclass overrides the default method defined in any of the interfaces that it implements. */
     interface Task2 {
         public default void doIt() {
             System.out.println("Doing Task");
@@ -179,6 +181,7 @@ public class InterfaceImplementation {
 
     interface Readable2 {
         int SIZE = 10;
+        void write();;
         void read();
         static void staticMethod(){
             System.out.println("In Readable.staticMethod");
@@ -210,7 +213,7 @@ public class InterfaceImplementation {
        static methods of an interface are never inherited, which means ReadWritable2 does not get even a single
        implementation of staticMethod from either of its superinterfaces. */
     interface ReadWritable2 extends Readable2, Writable2 {
-        //inherits SIZE, read(), and defaultMethod() from Readable
+        //inherits SIZE, read(), write(), and defaultMethod() from Readable
         //inherits SIZE and write() from Writable
     }
 
