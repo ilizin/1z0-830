@@ -73,9 +73,20 @@ public class BytesData {
        For example, FileInputStream, and ByteArrayInputStream reveal their data sources (a file and a byte array respectively)
        and are therefore, lower level streams. On the other hand, ObjectInputStream, BufferedInputStream, and
        DataInputStream reveal the type of the data that they deal with (Object, byte buffer, and primitive data, respectively)
-       instead of the source or the sink of the data and are therefore, higher level streams. */
+       instead of the source or the sink of the data and are therefore, higher level streams.
 
-    /* abstract class InputStream : The root class for all byte based input streams
+       If the name of an I/O stream class reveals an actual data source or sink, it is a lower level stream and it does not
+       take an input or an output stream as an argument during instantiation. For example, FileInputStream, and
+       ByteArrayInputStream reveal their data sources (a file and a byte array respectively) and are therefore,
+       lower level streams. On the other hand, ObjectInputStream, BufferedInputStream, and DataInputStream reveal the
+       type of the data that they deal with (Object, byte buffer, and primitive data, respectively) instead of the
+       source or the sink of the data and are therefore, higher level streams.
+       */
+
+    /*
+       The following image shows the important input streams that work with bytes.
+
+       abstract class InputStream : The root class for all byte based input streams
        Important methods:
         int available()
         int read()
@@ -98,6 +109,8 @@ public class BytesData {
               BufferedInputStream(InputStream is)
               BufferedInputStream(InputStream is, int size)
 
+       The following image shows the important output streams that work with bytes.
+
        abstract class OutputStream : The root class for all byte based output streams. InputStream and OutputStream are
                                      abstract and they contain most of the methods that we normally use while dealing with
                                      low level input and output.
@@ -108,7 +121,9 @@ public class BytesData {
         void flush()
         void close()
 
-       class FileOutputStream : Used to write bytes to a file
+       class FileOutputStream : Used to write bytes to a file. Higher level streams do not care about where the data actually
+                                comes from or goes to. It is the job of the lower level streams such as FileInputStream/
+                                FileOutputStream
        Important constructors
         FileOutputStream(String name)
         FileOutputStream(File f)
@@ -116,7 +131,9 @@ public class BytesData {
         FileOutputStream(File f, boolean append)
 
         class BufferedOutputStream : Used to write bytes to the underlying output stream without necessarily causing a call
-                                     to the underlying system for each byte written.
+                                     to the underlying system for each byte written. BufferedInputStream (and its corresponding BufferedOutputStream)
+                                     do not interact with the data source. They take an existing input stream (or an existing output stream)
+                                     and build additional functionality on top of those streams. That is why such streams are called "higher-level" streams.
               BufferedOutputStream(OutputStream os)
               BufferedOutputStream(OutputStream os, int size)
         */
