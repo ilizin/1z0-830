@@ -93,7 +93,7 @@ public class StandardFunctionalInterfaces {
         /* Another common operation performed with collections is filtering. The Collection interface has a default
            removeIf(Predicate<? super E> filter) method for this purpose. This method removes all of the elements of this
            list that satisfy the given predicate. */
-        List<Integer> iList = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> iList = List.of(1, 2, 3, 4, 5, 6);
         System.out.println(iList);
         Predicate<Integer> p = x -> x % 2 == 0;
         iList.removeIf(p);

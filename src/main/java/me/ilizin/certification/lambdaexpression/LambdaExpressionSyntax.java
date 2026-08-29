@@ -44,7 +44,7 @@ public class LambdaExpressionSyntax {
         LambdaType2 lambda2 = a -> a * a;
         lambda2 = (a) -> a * a;
         lambda2 = (int a) -> a * a;
-        // int a -> a*a // Invalid
+        // int a -> a * a // Invalid
         System.out.println(lambda2.test(2));
 
         System.out.println();
@@ -52,7 +52,7 @@ public class LambdaExpressionSyntax {
            within the parentheses, i.e., ( pName1, pName2, pName3 ). Parameter types are optional.
            If you are specifying parameter types, you must specify them for all the parameters. */
         LambdaType3 lambda3 = (a, b, c) -> a + b + c;
-        // a, b -> a+b // Invalid, parameters must be within ( )
+        // a, b -> a + b // Invalid, parameters must be within ( )
         lambda3 = (int a, int b, int c) -> a + b + c;
         // (int a, int b, c) -> a + b + c // Invalid
         System.out.println(lambda3.test(2, 3, 4));
@@ -122,7 +122,7 @@ public class LambdaExpressionSyntax {
            to access instance and static fields from the body of a lambda expression even if they are not final. */
         names = Arrays.asList("alex", "bob", "casy", "abel");
         int x = 0;
-        for(String n :  names){
+        for(String n :  names) {
             Predicate<String> p = k-> {
                 System.out.println(n); // Valid n is effectively final
                 // System.out.println(x); // Will not compile
