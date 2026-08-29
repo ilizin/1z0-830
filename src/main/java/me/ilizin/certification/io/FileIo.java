@@ -81,5 +81,33 @@ public class FileIo {
         System.out.println(f.isFile());
         System.out.println(f.isHidden());
         System.out.println(f.lastModified());
+
+        /* In the previous code examples, I used Windows specific paths to files such as "c:\\temp\\test1.txt"
+            and "c:\\temp". These path strings won't work on a Linux machine because Linux uses forward slash (/) as
+            the separator character. Furthermore, the root of a file system in Linux is just /.
+            The File class has two public static fields for this purpose:
+
+            public static char separatorChar: It is the system-dependent default name-separator character.
+                                              On Windows it is back slash ('\\') and on Linux, it is forward slash ('/').
+            public static String separator: A String version of separatorChar for convenience. It contains the same character
+                                            as separatorChar.
+
+            So, if I write the path string "c:\\temp\\test.txt" as File.separator + "temp" + File.separator + "test.txt",
+            it will work on Windows as well as on Linux because it will be translated to \temp\test.txt if the program
+            is run on a Windows machine and to /temp/test.txt if it is run on a Linux machine. Yes, the translation on
+            Windows is missing the drive letter c:, but unless you want to target a file on a different drive than the
+            one from which your program is executed, a drive letter is not required
+
+            Thus, on a Windows machine, if your path starts with a \ and your current directory is on the C drive, then
+            \temp\test.txt will refer to c:\temp\test.txt.
+
+            The File class has two more public static fields for separating paths in a platform independent manner.
+            These are:
+
+            public static char pathSeparatorChar: It is the system-dependent path-separator character. On windows, it is ;
+                                                  and on Linux, it is :.
+            public static String pathSeparator: A String version of pathSeparatorChar for convenience. It contains the
+                                                same character as pathSeparatorChar.
+            */
     }
 }
