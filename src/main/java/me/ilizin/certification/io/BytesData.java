@@ -2,7 +2,7 @@ package me.ilizin.certification.io;
 
 import java.io.*;
 
-public class FileInputAndOutputStream {
+public class BytesData {
 
     /*  There are several specialized exception classes such as FileNotFoundException or EOFException but all of them
         are rooted under the checked exception class java.io.IOException
@@ -93,7 +93,14 @@ public class FileInputAndOutputStream {
         FileInputStream(String name)
         FileInputStream(File f)
 
-       abstract class OutputStream : The root class for all byte based output streams
+        class BufferedInputStream : Adds functionality to another input stream-namely, the ability to buffer the input and
+                                    to support the mark and reset methods.
+              BufferedInputStream(InputStream is)
+              BufferedInputStream(InputStream is, int size)
+
+       abstract class OutputStream : The root class for all byte based output streams. InputStream and OutputStream are
+                                     abstract and they contain most of the methods that we normally use while dealing with
+                                     low level input and output.
        Important methods:
         void write(byte[] b)
         void write(byte[] b, int off, int len)
@@ -106,5 +113,12 @@ public class FileInputAndOutputStream {
         FileOutputStream(String name)
         FileOutputStream(File f)
         FileOutputStream(String name, boolean append)
-        FileOutputStream(File f, boolean append) */
+        FileOutputStream(File f, boolean append)
+
+        class BufferedOutputStream : Used to write bytes to the underlying output stream without necessarily causing a call
+                                     to the underlying system for each byte written.
+              BufferedOutputStream(OutputStream os)
+              BufferedOutputStream(OutputStream os, int size)
+        */
+
 }

@@ -92,6 +92,50 @@ public class CharacterData {
         }
     }
 
+    /* Generally, data from an input stream can only be read once. You cannot "rewind" a stream and reread the same
+       data again. However, some input streams that use internal data buffers may be able to provide this functionality.
+       This functionality comes in handy while implementing parsers that need to rewind to a previous location if they
+       encounter a specific control character.
+
+       Note that the above example uses a Reader(which means, it is a character stream) but this functionality works the
+       same way for an InputStream(which means, it is a byte stream) as well. The only difference is that in case of
+       a byte stream, the arguments to mark and skip methods are interpreted as the number of bytes (instead of number
+       of characters).*/
+    public static void rewind() {
+        try (BufferedReader bfr = new BufferedReader(new FileReader("test.txt"))) {
+            /* The markSupported method tells you whether the underlying stream supports mark and reset. */
+            if(bfr.markSupported()) {
+                int letter = -1;
+                int noOfChars = 0;
+                String tag = "";
+                while ((letter = bfr.read()) != -1) {
+                    noOfChars++;
+                    if (((char) letter) == '<') {
+                        noOfChars = 0; //start counting chars till we hit '>'
+                        /* The mark method takes an int parameter named markAheadLimit. It sets the maximum number of
+                           characters you can read safely after which the stream may invalidate the mark. In the above
+                           code, we have passed 256, which means, if we read more than 256 characters after setting
+                           the mark, we may not be able to reset the stream back to that mark. The stream will throw
+                           an IOException if we reset the stream after the stream has already invalidated the mark. */
+                        bfr.mark(256); //mark this location (just after '<')
+                    }
+                    if (letter == '>') {
+                        bfr.reset(); //rewind to the marked point
+                        char[] buf = new char[noOfChars - 1];
+                        bfr.read(buf);
+                        System.out.println(new String(buf)+" ");
+                        /* The skip method skips the stream forward by the specified number of characters. */
+                        bfr.skip(1); //skip the '>' character
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /* The following image shows the important input streams that work with characters:
        abstract class Reader : Root class for all character based streams
          int read()
