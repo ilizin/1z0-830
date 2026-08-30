@@ -36,6 +36,7 @@ public class MethodReference {
            is identified by a static variable named out of class System. It refers to an instance of PrintStream. PrintStream
            has an instance method named println. Thus, the out variable can be used to invoke the println method.*/
         List<String> list = new ArrayList<>();
+        list.add("hola"); list.add("hello"); list.add("ciao");
         list.forEach( obj -> System.out.println(obj) );
         list.forEach(System.out::println);
 
