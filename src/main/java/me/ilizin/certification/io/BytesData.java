@@ -18,8 +18,6 @@ public class BytesData {
 
         /* The concept of raw input stream and raw output stream is represented by abstract classes InputStream and
             OutputStream respectively.
-            Since the source and destination of our input and output streams are files, we are using FileInputStream
-            and FileOutputStream classes provided by the Java I/O library to read from and write to the files
 
             InputStream is the root abstract class for all byte based input streams.
             Important methods: int available(); int read(); int read(byte[] b); int read(byte[] b, int off, int len);
@@ -91,7 +89,7 @@ public class BytesData {
            of bytes that it actually read. It overwrites the byte array with the newly read bytes starting from
            index 0. */
         while( (bytesRead = is.read(chunk)) != -1 ) {
-            /* The available() method of FileInputStream class is used to return the estimated number of remaining
+            /* The available() method of InputStream class is used to return the estimated number of remaining
                bytes that can be read from the input stream without blocking. This method returns the number of bytes
                remaining to read from the file. When a file is completely read, this function returns zero. */
             System.out.print(is.available());
