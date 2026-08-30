@@ -4,19 +4,16 @@ import java.io.*;
 
 public class BytesData {
 
-    /*  There are several specialized exception classes such as FileNotFoundException or EOFException but all of them
-        are rooted under the checked exception class java.io.IOException
-        FileInputStream/FileOutputStream throws file with the specified pathname does not exist. It will also be
-        thrown by these constructors if the file does exist but for some reason is inaccessible, for example
-        when an attempt is made to open a read-only file for writing
-
-        For a long time, Java had only the classes in java.io package to perform I/O related tasks. However,
+    /*  For a long time, Java had only the classes in java.io package to perform I/O related tasks. However,
         these classes implement what is known as "blocking" I/O operations.
         If you try to read data from a remote file or from a network socket, the thread on which the read method
         is being executed may be blocked for a long time and will not be available to perform other tasks.
         Although this approach is fine for many applications, it doesn't scale well. To overcome this limitation,
         Java introduced a non-blocking I/O (aka NIO) library in Java 1.4 and updated it in Java 7 (aka NIO2).
-        These classes are packaged in the java.nio package.*/
+        These classes are packaged in the java.nio package.
+
+        There are several specialized exception classes such as FileNotFoundException or EOFException but all of them
+        are rooted under the checked exception class java.io.IOException */
     public static void main(String[] args) throws IOException {
 
         /* The concept of raw input stream and raw output stream is represented by abstract classes InputStream and
@@ -30,8 +27,12 @@ public class BytesData {
                                boolean markSupported(); void close()
 
             FileInputStream extends InputStream, it's used to read bytes from a file.
-            Important constructors: FileInputStream(String name); FileInputStream(File f) */
+            Important constructors: FileInputStream(String name); FileInputStream(File f)
+            FileInputStream and FileOutputStream throws a FileNotFoundException if a file with the specified pathname
+            does not exist or if the file does exist but for some reason is inaccessible, for example when an attempt is
+            made to open a read-only file for writing */
         InputStream fis = new FileInputStream("C:\\ilio\\repos\\1z0-830\\target\\classes\\test.jpg");
+        System.out.print(fis.markSupported());
         /* Although the read() method reads a byte from the input stream, the return type of this method is int.
            Only the lower order 8 bits of the returned integer contain the actual byte read from the input stream.
            To get that value, we need to cast the returned value to byte. */
@@ -65,10 +66,25 @@ public class BytesData {
         }
 
         /* InputStream and OutputStream have a few methods that help you perform I/O operations in bulk */
-        transfer(new FileInputStream("C:\\ilio\\repos\\1z0-830\\target\\classes\\test.jpg"), new FileOutputStream("test2.jpg"));
+        transfer(new FileInputStream("C:\\ilio\\repos\\1z0-830\\target\\classes\\test.jpg"),
+                new FileOutputStream("test2.jpg"));
+
+        /*  BufferedInputStream extends FileInputStream, it adds functionality to another input stream-namely, the ability
+            to buffer the input and to support the mark and reset methods.
+            Important constructors: BufferedInputStream(InputStream is); BufferedInputStream(InputStream is, int size)
+
+            BufferedOutputStream extends FileOutputStream, it's used to write bytes to the underlying output stream without
+            necessarily causing a call to the underlying system for each byte written. BufferedInputStream (and its corresponding BufferedOutputStream)
+                                     do not interact with the data source. They take an existing input stream (or an existing output stream)
+                                     and build additional functionality on top of those streams. That is why such streams are called "higher-level" streams.
+              BufferedOutputStream(OutputStream os)
+              BufferedOutputStream(OutputStream os, int size) */
+        transfer2(new FileInputStream("C:\\ilio\\repos\\1z0-830\\target\\classes\\test.jpg"),
+                new FileOutputStream("test3.jpg"));
     }
 
     private static void transfer(InputStream is, OutputStream os) throws IOException {
+
         byte[] chunk = new byte[1024];
         int bytesRead = -1;
         /* The read method populates the byte array with the bytes read from the input stream and returns the number
@@ -86,34 +102,20 @@ public class BytesData {
         };
     }
 
-    /* It is a lower level stream and it does not take an input or an output stream as an argument during instantiation.
+    /* A lower level stream does not take an input or an output stream as an argument during instantiation.
        For example, FileInputStream, and ByteArrayInputStream reveal their data sources (a file and a byte array respectively)
        and are therefore, lower level streams. On the other hand, ObjectInputStream, BufferedInputStream, and
        DataInputStream reveal the type of the data that they deal with (Object, byte buffer, and primitive data, respectively)
-       instead of the source or the sink of the data and are therefore, higher level streams.
-
-       If the name of an I/O stream class reveals an actual data source or sink, it is a lower level stream and it does not
-       take an input or an output stream as an argument during instantiation. For example, FileInputStream, and
-       ByteArrayInputStream reveal their data sources (a file and a byte array respectively) and are therefore,
-       lower level streams. On the other hand, ObjectInputStream, BufferedInputStream, and DataInputStream reveal the
-       type of the data that they deal with (Object, byte buffer, and primitive data, respectively) instead of the
-       source or the sink of the data and are therefore, higher level streams.
-       */
-
-    /*
-
-
-        class BufferedInputStream : Adds functionality to another input stream-namely, the ability to buffer the input and
-                                    to support the mark and reset methods.
-              BufferedInputStream(InputStream is)
-              BufferedInputStream(InputStream is, int size)
-
-        class BufferedOutputStream : Used to write bytes to the underlying output stream without necessarily causing a call
-                                     to the underlying system for each byte written. BufferedInputStream (and its corresponding BufferedOutputStream)
-                                     do not interact with the data source. They take an existing input stream (or an existing output stream)
-                                     and build additional functionality on top of those streams. That is why such streams are called "higher-level" streams.
-              BufferedOutputStream(OutputStream os)
-              BufferedOutputStream(OutputStream os, int size)
-        */
-
+       instead of the source or the sink of the data and are therefore, higher level streams. */
+    private static void transfer2(InputStream is, OutputStream os) throws IOException {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(is);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(os);
+        System.out.println(bufferedInputStream.markSupported());
+        int bytesRead = -1;
+        while( (bytesRead = bufferedInputStream.read()) != -1 ) {
+            bufferedOutputStream.write(bytesRead);
+        }
+        bufferedInputStream.close();
+        bufferedOutputStream.close();
+    }
 }
