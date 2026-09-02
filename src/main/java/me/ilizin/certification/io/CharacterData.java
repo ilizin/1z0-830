@@ -7,24 +7,49 @@ public class CharacterData {
 
     public static void main(String[] args) throws IOException {
 
-        /* Java provides InputStreamReader and OutputStreamWriter concrete classes that perform the conversion
-           as per the given character encoding. An InputStreamReader reads raw bytes from an InputStream and converts
-           them into characters. Similarly, an OutputStreamWriter converts a stream of characters to a stream
-           of bytes and pipes the resulting stream of bytes to an Output Stream as shown in the following code: */
-
+        System.out.println();
         /* We are using FileInputStream and FileOutputStream to get raw input and output streams from and to a file.
-           We are then using them to create InputStreamReader nd OutputStreamWriter instances so that we can read/write
+           We are then using them to create InputStreamReader and OutputStreamWriter instances so that we can read/write
            characters instead of bytes from/to the file. */
-        FileOutputStream fos = new FileOutputStream("c:\\temp\\test.txt");
-        OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+        FileOutputStream fos = new FileOutputStream("test.txt");
+        /* The Writer is the abstract root class for all character based output streams. Reader and Writer are abstract and
+                                 they contain most of the methods that we normally use while dealing with low level character
+                                 based input and output.
+            Important methods: void write(char[] cbuf), void write(char[] cbuf, int off, int len), void write(String str),
+                               void write(String str, int off, int len), Writer append(char c), Writer append(CharSequence csq),
+                               Writer append(CharSequence csq, int start, int end), void flush(), void close(), void write(int c)
+
+           An OutputStreamWriter converts a stream of characters to a stream of bytes and pipes the resulting stream of
+           bytes to an Output Stream as shown in the following code:
+
+           The OutputStreamWriter class extends Writer, it's a bridge from character streams to byte streams:
+                                  Characters written to it are encoded into bytes using a specified (or the default) charset.
+            Important constructors: OutputStreamWriter(OutputStream out), OutputStreamWriter(OutputStream out, String charsetName),
+                                    OutputStreamWriter(OutputStream out, Charset cs) */
+        Writer osw = new OutputStreamWriter(fos, "UTF-8");
         char[] charData = "hello".toCharArray();
         for (char c : charData) {
             osw.write(c);
         }
         osw.close();
         FileInputStream fis = new FileInputStream("c:\\temp\\test.txt");
-        /* We are using UTF-8as the character encoding while writing and reading bytes to and from the file. */
-        InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+        /* The Reader is the abstract root class for all character based streams.
+           Important methods: int read(), int read(char[] b, int off, int len), void skip(long n), boolean transferTo(Writer w),
+                              void close(), int read(char[] b), int read(CharBuffer buf), boolean ready(), boolean markSupported(),
+                              void mark(int readAheadLimit), reset()
+
+           We are using UTF-8 as the character encoding while writing and reading bytes to and from the file.
+           Java provides InputStreamReader and OutputStreamWriter concrete classes that perform the conversion
+           as per the given character encoding. An InputStreamReader reads raw bytes from an InputStream and converts
+           them into characters.
+
+           InputStreamReader class extends Reader it wors as a bridge from byte streams to character streams: It reads bytes and
+                             decodes them into characters using a specified charset or  using the, default charset.
+            Important constructors: InputStreamReader(InputStream in), InputStreamReader(InputStream in, String charsetName)
+                                    InputStreamReader(InputStream in, Charset cs)
+            Important methods: String getEncoding()
+           */
+        Reader isr = new InputStreamReader(fis, "UTF-8");
         int data = isr.read();
         while (data != -1) {
             char letter = (char) data;
@@ -37,12 +62,11 @@ public class CharacterData {
 
         /* we can read and write lines of text instead of single characters by wrapping an InputStreamReader into a
            BufferedReader and an OutputStreamWriter into a BufferedWriter as follows:*/
-
         try( var fos2 = new FileOutputStream("c:\\temp\\test.txt");
              var osw2 = new OutputStreamWriter(fos2, "ISO-8859-1");
-             var bw = new BufferedWriter(osw2);){
+             var bw = new BufferedWriter(osw2)) {
             String str = "hello";
-            bw.write(str+"\r\n"+str+"\n\r");//writing three lines to the file
+            bw.write(str+"\r\n"+str+"\n\r");// writing three lines to the file
         }
 
         /* A total of three lines are read from the file. The third line is an empty string (it is not null).
@@ -136,27 +160,9 @@ public class CharacterData {
         }
     }
 
-    /* The following image shows the important input streams that work with characters:
-       abstract class Reader : Root class for all character based streams
-         int read()
-         int read(char[] b, int off, int len)
-         void skip(long n)
-         boolean transferTo(Writer w)
-         void close()
-         int read(char[] b)
-         int read(CharBuffer buf)
-         boolean ready()
-         boolean markSupported()
-         void mark(int readAheadLimit)
-         reset()
+    /*
 
-       class InputStreamReader extends Reader : A bridge from byte streams to character streams: It reads bytes and
-                                                decodes them into characters using a specified charset or  using the
-                                                default charset.
-            InputStreamReader(InputStream in)
-            InputStreamReader(InputStream in, String charsetName)
-            InputStreamReader(InputStream in, Charset cs)
-            String getEncoding()
+       class
 
        class FileReader : Reads text from character files using a default buffer size.
             FileReader(File file)
@@ -172,26 +178,9 @@ public class CharacterData {
              Stream<String> lines()
       */
 
-      /* The following image shows the important output streams that work with characters.
-         abstract class Writer : Root class for all character based output streams. Reader and Writer are abstract and
-                                 they contain most of the methods that we normally use while dealing with low level character
-                                 based input and output.
-            void write(char[] cbuf)
-            void write(char[] cbuf, int off, int len)
-            void write(String str)
-            void write(String str, int off, int len)
-            Writer append(char c)
-            Writer append(CharSequence csq)
-            Writer append(CharSequence csq, int start, int end)
-            void flush()
-            void close()
-            void write(int c)
+      /*
 
-         class OutputStreamWriter extends Writer : A bridge from character streams to byte streams: Characters written
-                                                   to it are encoded into bytes using a specified (or the default) charset.
-            OutputStreamWriter(OutputStream out)
-            OutputStreamWriter(OutputStream out, String charsetName)
-            OutputStreamWriter(OutputStream out, Charset cs)
+
 
          class FileWriter : Writes text to character files using a default buffer size. Uses a specified (or the default)
                             charset to encode bytes to characters. FileWriter and FileReader can be created without bridge
