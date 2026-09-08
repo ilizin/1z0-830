@@ -59,5 +59,15 @@ public class PathClass {
            c:\temp\props\values.properties\dbconnection.properties. */
         Path dbPath = propFilePath.resolveSibling("dbconnection.properties");
         System.out.println(dbPath);
+
+        /* The relativize method is the inverse of resolve. It finds a path to the given file relative to the path on which
+           it is invoked. In other words, it tells you the path that you need to take to reach the given path from the
+           path on which it is called. Continuing the previous example, given that base Path is c:\temp and that
+           propFilePath is c:\temp\props\values.properties, basePath.relativize(propFilePath) will return
+           props/values.properties. */
+        basePath = Path.of(System.getProperty("basepath"));
+        propFilePath = basePath.resolve("props/values.properties");
+        System.out.println(basePath.relativize(propFilePath));
+
     }
 }
