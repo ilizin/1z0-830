@@ -42,5 +42,22 @@ public class PathClass {
         /* A well formed paths do not end with a trailing separator character (unless it is referring to the root such as C:\ or /).
            So, even if you try to create a Path with a trailing slash, it will be ignored. For example:
            System.out.print(Path.of("/a/b/")); will print /a/band not /a/b/. */
+
+
+        /* If the argument to the resolve method is a relative path, the resolve method assumes that the given path is
+           relative to the path on which this method is called. Therefore, it just joins the two paths to create the actual
+           path to the file. In this case, since base Path is c:\temp, basePath.resolve("props\values.properties");
+           returns c:\temp\props\values.properties. If the argument is an absolute path, there is nothing to resolve and
+           it returns the same path as the argument. */
+        Path basePath = Path.of(System.getProperty("basepath"));
+        Path propFilePath = basePath.resolve("props/values.properties");
+        System.out.println(propFilePath);
+        /* The resolveSibling method works similarly. The only difference is, it assumes that the path given as an
+           argument is supposed to exist at the same level as the path on which this method is invoked. Therefore,
+           propFilePath.resolveSibling("dbconnection.properties") returns c:\temp\props\dbconnection.properties.
+           Had we called propFilePath.resolve("dbconnection.properties"), it would have returned
+           c:\temp\props\values.properties\dbconnection.properties. */
+        Path dbPath = propFilePath.resolveSibling("dbconnection.properties");
+        System.out.println(dbPath);
     }
 }
