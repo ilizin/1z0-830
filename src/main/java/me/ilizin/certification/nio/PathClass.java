@@ -1,5 +1,6 @@
 package me.ilizin.certification.nio;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -69,5 +70,16 @@ public class PathClass {
         propFilePath = basePath.resolve("props/values.properties");
         System.out.println(basePath.relativize(propFilePath));
 
+        /* If you want work exclusively with the Path interface, you can. You will not need to use the old java.io.File
+           class for anything. However, old code and third party libraries that your code depends on may still be using the
+           File class. Both - the File class and the Path interface - have methods that allow you to switch between the
+           two easily. Specifically, File has a toPath method that returns a Path object representing the same file and
+           Path has a toFile method that returns the corresponding File object.*/
+
+        basePath = Path.of(System.getProperty("basepath"));
+        File file = basePath.toFile();
+        System.out.println(file);
+        Path path = file.toPath();
+        System.out.println(path);
     }
 }
