@@ -67,10 +67,12 @@ public class OneDimensionalArray {
         String[] str = {"a", "b", "c", "d", "e"}; // An array of Strings of size 5
         int[] iap = new int[]{ 1, 2 };
         iap = new int[]{ 1 };
-        int iap2;
+        int[] iap2;
         // iap2 = {1, 2}; // Array initializer is not allowed here, it goes with the array declaration always.
         // It is prohibited to specify the size if you are specifying individual elements.
         //int[] ia7 = new int[2]{ 1, 2 }; // Will not compile.
+        stampaMatrice(new int[]{1, 2});
+        // stampaMatrice({1, 2}); // Will not compile
         System.out.println(Arrays.toString(ia9));
         System.out.println(Arrays.toString(str));
         System.out.println(Arrays.toString(iap));
@@ -147,5 +149,9 @@ public class OneDimensionalArray {
         the JVM will throw a java.lang.ArrayStoreException The JVM knows that
         this array is actually an array of Integers and since a Double is-not-an Integer, it will not allow this assignment */
         // na12[0] = 1.0;
+    }
+
+    private static void stampaMatrice(int[] a) {
+
     }
 }
