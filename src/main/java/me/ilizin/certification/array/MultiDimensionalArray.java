@@ -8,7 +8,7 @@ public class MultiDimensionalArray {
 
         /* Java doesn't have a multidimensional arrays. Java has a class of an array of ints is [I.
            Now, what if you want to have an array of objects of this class. In other words, an array of "array of ints".
-           You can declare it like this. Visually, the declaration looks like iaa is a two-dimensional matrix of ints.
+           Visually, the declaration looks like iaa is a two-dimensional matrix of ints.
            But in reality, iaa points to a single dimensional array, where each element of the array is an array of ints.
            In a two-dimensional array, the length of each row will always be the same. While in an array of arrays,
            there is no such restriction. Each row can refer to an array of any length. */
@@ -43,8 +43,8 @@ public class MultiDimensionalArray {
         int[][] iaa5 = new int[][]{ new int[]{ 1, 2 } };
         int[][] iaa5a = { new int[]{ 1, 2 } };
         int[][] iaa6 = { { 1, 2 } }; // This is the same as above but with array initializer.
-        int[][] iaa6a = { new int[]{ 1, 2 } };
         System.out.println(Arrays.toString(iaa5));
+        System.out.println(Arrays.toString(iaa5a));
         System.out.println(Arrays.toString(iaa6));
 
         /* Every array is an object, this means, you can assign any array object to variable of type Object */
