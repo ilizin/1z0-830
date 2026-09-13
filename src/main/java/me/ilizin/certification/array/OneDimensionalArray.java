@@ -28,6 +28,7 @@ public class OneDimensionalArray {
         String[] strA; // strA is a one dimensional array of Strings
 
         System.out.println();
+        System.out.println("*** PART 1 ***");
         /* The statements shown above only declare array variables, You use the new keyword to create an array object.
            The parts on the right-hand side of = sign in the below statements are called "array creation expressions".
            Every element of the array is also initialized to its default value automatically by the JVM. The default
@@ -43,6 +44,7 @@ public class OneDimensionalArray {
         System.out.println(Arrays.toString(stra));
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         /* In Java, arrays are objects of specific classes. It's not an instance of Object class but since Object is
            the root of every class in Java, an array object is an Object and all methods of the Object class can be
            invoked on an array.
@@ -60,6 +62,7 @@ public class OneDimensionalArray {
         System.out.println(ta.getClass().getName() + " , " + ta.getClass().getSuperclass().getName()); // [LMyClass; , java.lang.Object
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* It is possible to create array objects without using the new keyword. The parts on the right-hand side of the =
            sign in the above statements are called "array initializers". An array initializer is a shortcut that allows
            you to create as well as initialize each element of the array with the values that you want */
@@ -78,6 +81,7 @@ public class OneDimensionalArray {
         System.out.println(Arrays.toString(iap));
 
         System.out.println();
+        System.out.println("*** PART 4 ***");
         /* Similarly, if you have an array variable pointing an array of 5 ints, the first element can be accessed
         using ia[0] and the last element using ia[4]. If you try to access any array beyond its range, JVM will throw
         an instance of ArrayIndexOutOfBoundsException. */
@@ -87,6 +91,7 @@ public class OneDimensionalArray {
         System.out.println(ia10[0]);
 
         System.out.println();
+        System.out.println("*** PART 5 ***");
         /* It is possible to have an array of length 0. There are no elements in this array. An array of length 0 is not
             the same as null. A good example of an array of length 0 is the args parameter of the main method. If you run
             a class with no argument, args will not be null but will refer to an array of Strings of length 0. */
@@ -94,12 +99,14 @@ public class OneDimensionalArray {
         System.out.println(ia11);
 
         System.out.println();
+        System.out.println("*** PART 6 ***");
         /* All array classes have one field named length, which is of type int. This field is public and it stores
            the length of the array. This field is also final, which reflects the fact that you cannot change the length
            of an array after its creation. */
         System.out.println(ia11.length);
 
         System.out.println();
+        System.out.println("*** PART 7 ***");
         /* All array classes also have a public method named clone. This method creates a copy of the array object.
            It merely creates a new array object of the same length and copies the contents of existing array into the new array.
            Which means, if the existing array contained primitive values, those values will be copied to the elements of the new array.
@@ -115,11 +122,13 @@ public class OneDimensionalArray {
         System.out.println(myIntArr1[0] == myIntArr2[0]);
 
         System.out.println();
+        System.out.println("*** PART 8 ***");
         /* Array classes inherit all the members of the Object class. This includes toString, equals, and hashCode methods. */
         System.out.println(myIntArr3.hashCode());
         System.out.println(myIntArr3.toString());
 
         System.out.println();
+        System.out.println("*** PART 9 ***");
         /* Arrays are "covariant", Meaning, you can store a subclass object in an array that is declared to be of the type of
            its superclass, for example, if you have an array of type java.lang.Number, you can store java.lang.Integer or
            java.lang.Float objects.
@@ -137,6 +146,7 @@ public class OneDimensionalArray {
         Object[] oa = new Float[3];
 
         System.out.println();
+        System.out.println("*** PART 10 ***");
         /* The second is that arrays are "reified". Meaning, the type information of an array object is preserved in the
            array object itself and is available to the JVM at runtime. This enables the checking of arrays and its elements
            for type safety at runtime by the JVM. In other words, the JVM knows about the type of the actual array object and
@@ -152,6 +162,5 @@ public class OneDimensionalArray {
     }
 
     private static void stampaMatrice(int[] a) {
-
     }
 }

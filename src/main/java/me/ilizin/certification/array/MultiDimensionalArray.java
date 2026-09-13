@@ -6,6 +6,8 @@ public class MultiDimensionalArray {
 
     public static void main(String[] args) {
 
+        System.out.println();
+        System.out.println("*** PART 1 ***");
         /* Java doesn't have a multidimensional arrays. Java has a class of an array of ints is [I.
            Now, what if you want to have an array of objects of this class. In other words, an array of "array of ints".
            Visually, the declaration looks like iaa is a two-dimensional matrix of ints.
@@ -20,12 +22,14 @@ public class MultiDimensionalArray {
         //int[2][] iaa;
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         /* iaa2 is created using an array creation expression. iaa2 refers to an array of length 2. Each element of this
            array refers to an array of ints of length 3. Each element of both the arrays of ints is initialized to 0. */
         int[][] iaa2 = new int[2][3];
         System.out.println(Arrays.toString(iaa2));
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* iaa3 is created using an array creation expression. iaa3 refers to an array of length 3. Observe that the
            type of each element is "array of ints", which means iaa3 is an array of objects (and not of primitives).
            Since every element of array of objects is automatically initialized to null, each element of the array
@@ -39,6 +43,7 @@ public class MultiDimensionalArray {
         System.out.println(Arrays.toString(iaa3));
 
         System.out.println();
+        System.out.println("*** PART 4 ***");
         /* This statement uses an array creation expression coupled with array initializer. */
         int[][] iaa5 = new int[][]{ new int[]{ 1, 2 } };
         int[][] iaa5a = { new int[]{ 1, 2 } };
@@ -47,6 +52,8 @@ public class MultiDimensionalArray {
         System.out.println(Arrays.toString(iaa5a));
         System.out.println(Arrays.toString(iaa6));
 
+        System.out.println();
+        System.out.println("*** PART 5 ***");
         /* Every array is an object, this means, you can assign any array object to variable of type Object */
         int[] intArray = new int[]{ 0, 1, 2 };
         int[][] intArray1 = new int[][]{ { 0, 1, 2 } };
