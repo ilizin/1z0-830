@@ -59,7 +59,7 @@ public class FilesClass {
         String data = Files.readString(path1);
         List<String> allLines = Files.readAllLines(path1);
         //Charset may also be passed as the second argument in both of the above
-        Files.write(path2, data);
+       // Files.write(path2, data);
         Files.write(path2, allLines); //Charset and OpenOptions may also be passed as the second and the third arguments
 
         /* You can read the list of files in a directory using the list method: */

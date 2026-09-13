@@ -71,6 +71,9 @@ public class ArrayUtilityMethods {
         System.out.println(Arrays.equals(test1, test2)); // false
         test1 = null; test2 = null;
         System.out.println(Arrays.equals(test1, test2)); // true
+        int[] test1Primitive = {2, 3, 4, 5};
+        int[] test2Primitive = {2, 3, 4, 5};
+        System.out.println(Arrays.equals(test1Primitive, test2Primitive)); // true
         Integer[][] test11 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
         Integer[][] test12 = { { 1, 2, 3 }, { 3, 4, 5 }, { 6, 7, 8 } };
         Integer[][] test13 = { { 1, 2, 3 }, { 3, 4, 5 } };
