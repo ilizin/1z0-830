@@ -14,7 +14,7 @@ public class InterfaceDefinition {
        interface cannot be declared final.
 
        An interface is implicitly abstract. Although legally valid, it would be redundant to declare an interface as abstract. */
-    public interface Movable {
+    public abstract interface Movable {
         void move1(int x); //OK, move1 is implicitly public
         public void move2(int x); //OK, move2 is explicitly public
         // public final void move8(); // Invalid
@@ -25,12 +25,13 @@ public class InterfaceDefinition {
     }
 
     /* Private methods do not really fit conceptually in an interface but the need for private methods was felt after default
-       methods were introduced in Java 8. If a method gets too big or if there multiple methods with a lot of common code,
+       methods were introduced in Java 8. If a method gets too big or if there are multiple methods with a lot of common code,
        there was no way to refactor them into smaller methods without exposing all of them to the world because
        everything in an interface had to be public. Java 9 fixes this problem by allowing private methods in
        an interface. */
     public interface Movable2 {
         private void pvtMethod() { } //OK, non-abstract methods can be private (but not protected)
+        private static void pvtStaticMethod() { }
     }
 
     /* An interface may contain abstract methods, they contain just the declaration and no body. It is the same thing like
@@ -38,6 +39,11 @@ public class InterfaceDefinition {
     public interface Movable3 {
         void move3(int x); //implicitly abstract
         abstract void move4(int x); //explicitly abstract
+    }
+
+    public abstract class AbstractClass {
+        abstract void move3(int x); // You must explicitly declare a method as abstract into an abstract class.
+        // void move3(int x);
     }
 
     /* An interface may contain default methods, they are a way for an interface to include a default implementation
