@@ -4,7 +4,13 @@ import java.io.*;
 
 public class BytesData {
 
-    /*  For a long time, Java had only the classes in java.io package to perform I/O related tasks. However,
+    /*  In the Java world, input and output of data to and from a Java program is done in the terms of bytes flowing
+        into the program or out of the program. This flow of bytes is called "stream". So, a stream of bytes coming into
+        a program is an "input" stream and a stream of bytes going out of a program is an "output" stream. A program
+        reads the bytes coming in using an input stream and it writes the bytes that are meant to go out of the program
+        using an output stream.
+        The source or the destination of a data stream could be a file, a network socket, or even an in-memory array.
+        For a long time, Java had only the classes in java.io package to perform I/O related tasks. However,
         these classes implement what is known as "blocking" I/O operations.
         If you try to read data from a remote file or from a network socket, the thread on which the read method
         is being executed may be blocked for a long time and will not be available to perform other tasks.
@@ -16,6 +22,8 @@ public class BytesData {
         are rooted under the checked exception class java.io.IOException */
     public static void main(String[] args) throws IOException {
 
+        System.out.println();
+        System.out.println("*** PART 1 ***");
         /* The concept of raw input stream and raw output stream is represented by abstract classes InputStream and
             OutputStream respectively.
 
@@ -29,7 +37,7 @@ public class BytesData {
             FileInputStream and FileOutputStream throws a FileNotFoundException if a file with the specified pathname
             does not exist or if the file does exist but for some reason is inaccessible, for example when an attempt is
             made to open a read-only file for writing */
-        InputStream fis = new FileInputStream("C:\\ilio\\repos\\1z0-830\\target\\classes\\test.jpg");
+        InputStream fis = new FileInputStream(".\\src\\main\\resources\\io\\test.jpg");
         System.out.print(fis.markSupported());
         /* Although the read() method reads a byte from the input stream, the return type of this method is int.
            Only the lower order 8 bits of the returned integer contain the actual byte read from the input stream.
@@ -46,6 +54,9 @@ public class BytesData {
            because it allows any system resources associated with the streams such as file locks to be reclaimed by
            the OS. */
         fis.close();
+
+
+
         /* The OutputStream is the root class for all byte based output streams.
            Important methods: void write(byte[] b); void write(byte[] b, int off, int len); void write(int b);
            void flush(); void close()
