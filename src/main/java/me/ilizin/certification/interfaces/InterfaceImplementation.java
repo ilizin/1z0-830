@@ -1,5 +1,8 @@
 package me.ilizin.certification.interfaces;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class InterfaceImplementation {
 
     interface Movable {
@@ -8,7 +11,7 @@ public class InterfaceImplementation {
     interface Readable {
         void read();
         Number sum();
-        Number sum2() throws RuntimeException;
+        Number sum2() throws IOException;
     }
     /* A class can implement any number of interfaces by specifying their names in its implements clause. For
        example, in the following code the Price class implements two interfaces.
@@ -24,12 +27,12 @@ public class InterfaceImplementation {
         public void read() { System.out.println("Reading..."); }
         /* The return type must be covariant with the return type declared by the interface method just like when
            overriding a method.  */
-        public Integer sum() throws RuntimeException {
+        public Integer sum() throws IllegalArgumentException { // You can add run-time exceptions
             return 0;
         }
         /* The throws clause must be compatible with the throws clause of the interface method, therefore the same
            exception or a child exception */
-        public Number sum2() throws IllegalArgumentException, RuntimeException {
+        public Number sum2() throws FileNotFoundException, IOException {
             return 0;
         }
         /*public Number sum2() throws Exception {
@@ -81,7 +84,7 @@ public class InterfaceImplementation {
             System.out.println("In Price6.p2()");
         }
     }
-    /* Unlike the static methods of a class, the static methods of an interface cannot be inherited. compile. To invoke
+    /* Unlike the static methods of a class, the static methods of an interface cannot be inherited. To invoke
        a static method of an interface, one must use the <interface name>.<method name> syntax. */
     class Price5 extends Price6 implements Movable5 {
         void doSomething() {
@@ -100,6 +103,11 @@ public class InterfaceImplementation {
         public default void doIt() {
             System.out.println("Doing Activity");
         }
+
+        default float doIt2() {
+            System.out.println("Doing Task");
+            return 2;
+        }
     }
     /* Since it is possible for a class to implement multiple interfaces, it is possible for a class to inherit multiple
        implementations of a default method from more than one interface.
@@ -110,7 +118,7 @@ public class InterfaceImplementation {
        the ambiguity in invocation. */
     // class Process implements Task, Activity {} // Invalid
     class Process implements Task, Activity {
-        public void doIt(){
+        public void doIt() {
             System.out.println("Doing Process");
         }
     }
@@ -215,6 +223,16 @@ public class InterfaceImplementation {
     interface ReadWritable2 extends Readable2, Writable2 {
         //inherits SIZE, read(), write(), and defaultMethod() from Readable
         //inherits SIZE and write() from Writable
+        int SIZE2 = Readable2.SIZE;
+        int SIZE3 = Writable2.SIZE;
+        // int SIZE4 = SIZE; // Invalid
+    }
+
+    interface Test {
+        default void test1() {
+
+        }
+        // void test1(); // Not allowed
     }
 
     public static void main(String[] args) {
