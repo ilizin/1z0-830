@@ -55,9 +55,18 @@ public class InterfaceMore {
        anonymous class doesn't need to implement any method. */
     interface Dummy {
     }
+    interface Dummy2 {
+        public void hello();
+    }
     public class TestClass {
         public static void main(String[] args){
             Dummy d = new Dummy(){ };
+            Dummy2 d2 = new Dummy2(){
+                @Override
+                public void hello() {
+                    
+                }
+            };
         }
     }
 
