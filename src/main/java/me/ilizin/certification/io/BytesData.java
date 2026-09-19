@@ -16,10 +16,7 @@ public class BytesData {
         is being executed may be blocked for a long time and will not be available to perform other tasks.
         Although this approach is fine for many applications, it doesn't scale well. To overcome this limitation,
         Java introduced a non-blocking I/O (aka NIO) library in Java 1.4 and updated it in Java 7 (aka NIO2).
-        These classes are packaged in the java.nio package.
-
-        There are several specialized exception classes such as FileNotFoundException or EOFException but all of them
-        are rooted under the checked exception class java.io.IOException */
+        These classes are packaged in the java.nio package. */
     public static void main(String[] args) throws IOException {
 
         System.out.println();
@@ -36,7 +33,8 @@ public class BytesData {
             Important constructors: FileInputStream(String name); FileInputStream(File f)
             FileInputStream and FileOutputStream throws a FileNotFoundException if a file with the specified pathname
             does not exist or if the file does exist but for some reason is inaccessible, for example when an attempt is
-            made to open a read-only file for writing */
+            made to open a read-only file for writing. There are several specialized exception classes such as
+            FileNotFoundException or EOFException but all of them are rooted under the checked exception class java.io.IOException */
         InputStream fis = new FileInputStream(".\\src\\main\\resources\\io\\test.jpg");
         System.out.print(fis.markSupported());
         /* Although the read() method reads a byte from the input stream, the return type of this method is int.
@@ -46,6 +44,13 @@ public class BytesData {
         /* We keep reading from the input stream until we get a -1. A -1 indicates that the stream has ended and
            there is no more data available to read from the input stream. */
         while (bite != -1) {
+            /* The Java API designers decided to return an int from read() instead of byte because an extra value was needed
+               to signify the end of the stream. The total number of values returned by the method is 257, which includes
+               256 values (00000000to 11111111) represented by a byte and an extra value of -1 to denote the end of the stream.
+               Since a byte cannot represent 257 values, a larger data type was needed. This could have been achieved using
+               a short as well, but int was used to remain consistent with the C language.
+               Similarly, even though the write(int ) method accepts an int parameter, only the lower 8 bits are actually
+               written to the file. Although byte would have sufficed in this case, int was used to be consistent with C. */
             byte data = (byte)bite;
             System.out.print(data);
             bite = fis.read();
@@ -67,7 +72,7 @@ public class BytesData {
            Important constructors: FileOutputStream(String name); FileOutputStream(File f);
                                    FileOutputStream(String name, boolean append); FileOutputStream(File f, boolean append) */
         /* Avoid closing the stream by using try-with-resources */
-        try ( OutputStream fos = new FileOutputStream("test2.dat") ) {
+        try ( OutputStream fos = new FileOutputStream(".\\src\\main\\resources\\io\\test2.dat") ) {
             byte[] imageData = new byte[1000];
             for (byte b : imageData) {
                 fos.write(b);
@@ -75,8 +80,8 @@ public class BytesData {
         }
 
         /* InputStream and OutputStream have a few methods that help you perform I/O operations in bulk */
-        transfer(new FileInputStream("C:\\ilio\\repos\\1z0-830\\target\\classes\\test.jpg"),
-                new FileOutputStream("test2.jpg"));
+        transfer(new FileInputStream(".\\src\\main\\resources\\io\\test.jpg"),
+                 new FileOutputStream(".\\src\\main\\resources\\io\\test3.jpg"));
 
         /*  BufferedInputStream extends FileInputStream, it adds functionality to another input stream-namely, the ability
             to buffer the input and to support the mark and reset methods.
@@ -88,8 +93,8 @@ public class BytesData {
                                      and build additional functionality on top of those streams. That is why such streams are called "higher-level" streams.
               BufferedOutputStream(OutputStream os)
               BufferedOutputStream(OutputStream os, int size) */
-        transfer2(new FileInputStream("C:\\ilio\\repos\\1z0-830\\target\\classes\\test.jpg"),
-                new FileOutputStream("test3.jpg"));
+        transfer2(new FileInputStream(".\\src\\main\\resources\\io\\test.jpg"),
+                new FileOutputStream(".\\src\\main\\resources\\io\\test4.jpg"));
     }
 
     private static void transfer(InputStream is, OutputStream os) throws IOException {
@@ -106,7 +111,11 @@ public class BytesData {
             System.out.print(is.available());
             /* To write the bytes to the output stream, we are using OutputStream's
             write(byte[] b, int offset, int len) method, which writes len number of bytes from the given byte
-            array starting from the index given by the offset parameter */
+            array starting from the index given by the offset parameter.
+            Note that the number of bytes read may be less than 1024 in the last iteration of the while loop and in that
+            case, the byte array will still have old values read in the previous iteration at the index position indicated by
+            bytesRead and beyond. Since we are only writing bytesRead number of values starting from index 0, those old
+            values will not be written to the output stream. */
             os.write(chunk, 0, bytesRead);
         };
     }

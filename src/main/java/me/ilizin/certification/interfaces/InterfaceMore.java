@@ -64,7 +64,7 @@ public class InterfaceMore {
             Dummy2 d2 = new Dummy2(){
                 @Override
                 public void hello() {
-                    
+
                 }
             };
         }
