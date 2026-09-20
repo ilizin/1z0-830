@@ -5,6 +5,17 @@ import java.io.IOException;
 
 public class CreatingStrings {
 
+    private static class Account{
+        String acctNo;
+        Account(String  acctNo){
+            this.acctNo = acctNo;
+        }
+
+        public String toString() {
+            return "Account[" + acctNo + "]";
+        }
+    }
+
     /* In Java, a "string" is an object of class java.lang.String. It represents a series of characters.
        String is a final class, which means it cannot be extended. It extends Object and implements java.lang.CharSequence.
        it is such a fundamental object that Java provides special treatment to strings in terms of how they are created,
@@ -84,7 +95,15 @@ public class CreatingStrings {
 
         System.out.println();
         System.out.println("*** PART 4 ***");
-        
+        /* The below code produces the following output with and without overriding toString:
+           1. Printing account  - Account[A1234]
+           2. Printing account  - Account@72bfaced
+           Since the Object class has no idea about what a class represents, it just returns a generic string consisting
+           of the name of the class of the object, the at-sign character '@', and the unsigned hexadecimal representation
+           of the hash code of the object. */
+        Account a = new Account("A1234");
+        String s = "Printing account  - "+a;
+        System.out.println(s);
 
     }
 }
