@@ -31,9 +31,9 @@ public class BytesData {
 
             FileInputStream extends InputStream, it's used to read bytes from a file.
             Important constructors: FileInputStream(String name); FileInputStream(File f)
-            FileInputStream and FileOutputStream throws a FileNotFoundException if a file with the specified pathname
+            FileInputStream and FileOutputStream throw a FileNotFoundException if a file with the specified pathname
             does not exist or if the file does exist but for some reason is inaccessible, for example when an attempt is
-            made to open a read-only file for writing. There are several specialized exception classes such as
+            made to open a read-only file for writing.  There are several specialized exception classes such as
             FileNotFoundException or EOFException but all of them are rooted under the checked exception class java.io.IOException */
         InputStream fis = new FileInputStream(".\\src\\main\\resources\\io\\test.jpg");
         System.out.print(fis.markSupported());
@@ -66,9 +66,7 @@ public class BytesData {
            Important methods: void write(byte[] b); void write(byte[] b, int off, int len); void write(int b);
            void flush(); void close()
 
-           FileOutputStream extends OutputStream is used to write bytes to a file. Higher level streams do not care about
-                                                 where the data actually comes from or goes to. It is the job of the lower
-                                                 level streams such as FileInputStream or FileOutputStream
+           FileOutputStream extends OutputStream is used to write bytes to a file.
            Important constructors: FileOutputStream(String name); FileOutputStream(File f);
                                    FileOutputStream(String name, boolean append); FileOutputStream(File f, boolean append) */
         /* Avoid closing the stream by using try-with-resources */
@@ -83,14 +81,12 @@ public class BytesData {
         transfer(new FileInputStream(".\\src\\main\\resources\\io\\test.jpg"),
                  new FileOutputStream(".\\src\\main\\resources\\io\\test3.jpg"));
 
-        /*  BufferedInputStream extends FileInputStream, it adds functionality to another input stream-namely, the ability
+        /*  BufferedInputStream extends FilterInputStream, it adds functionality to another input stream-namely, the ability
             to buffer the input and to support the mark and reset methods.
             Important constructors: BufferedInputStream(InputStream is); BufferedInputStream(InputStream is, int size)
 
-            BufferedOutputStream extends FileOutputStream, it's used to write bytes to the underlying output stream without
-            necessarily causing a call to the underlying system for each byte written. BufferedInputStream (and its corresponding BufferedOutputStream)
-                                     do not interact with the data source. They take an existing input stream (or an existing output stream)
-                                     and build additional functionality on top of those streams. That is why such streams are called "higher-level" streams.
+            BufferedOutputStream extends FilterOutputStream, it's used to write bytes to the underlying output stream without
+            necessarily causing a call to the underlying system for each byte written.
               BufferedOutputStream(OutputStream os)
               BufferedOutputStream(OutputStream os, int size) */
         transfer2(new FileInputStream(".\\src\\main\\resources\\io\\test.jpg"),
