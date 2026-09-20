@@ -46,6 +46,7 @@ public class LambdaExpression {
     public static void main(String[] args) {
 
         System.out.println();
+        System.out.println("*** PART 1 ***");
         /* We want to get the details of all cars from a particular company and to do that, we define a CompanyFilter
         class that contains the actual logic for filtering cars based on company name. At run time, it creates a
         CompanyFilter object and passes it to CarMall's showCars method, which returns a filtered list of cars. */
@@ -55,6 +56,7 @@ public class LambdaExpression {
         System.out.println(carsByCompany);
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         /* The following code uses a lambda expression, there is no separate class that implements CarFilter and there
         is no explicit instantiation of a CarFilter object either. Both of these tasks have been replaced by a very
         short statement c -> c.company.equals("Honda") named lambda expression which is just a shortcut for the compiler.
@@ -88,6 +90,7 @@ public class LambdaExpression {
         and Java has a special name for such an interface: Functional Interface. */
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* Before lambda expression were introduced in Java, people used anonymous classes to achieve the same.
           The following is how you could implement a CarFilter the old way */
         carsByCompany = cm.showCars(new CarFilter() {
