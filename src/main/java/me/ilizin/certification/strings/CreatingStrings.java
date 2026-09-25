@@ -105,5 +105,21 @@ public class CreatingStrings {
         String s = "Printing account  - "+a;
         System.out.println(s);
 
+        System.out.println();
+        System.out.println("*** PART 5 ***");
+        /* In the chapter on operators, we saw that +=is a compound operator. It applies the +operator on the two
+           operands and then assigns the result back to the variable on the left side. As is the case with the +operator,
+           the string concatenation behavior of +=is triggered when the type of any one of its operands is String.
+           Here is an example: */
+        String s5 = "1";
+        s5 += 2; //expanded to s5 = s5 + 2;
+        System.out.println(s); //prints "12"
+        /* Furthermore, if the result of the +=operator is a string, the type of the operand on the left must be
+           something that can refer to a string, otherwise, the expression will not compile. There are only 4 such
+           types other than String the super classes of String, i.e., CharSequence and Object and, the interfaces that
+           String implements, i.e., Serializable snd Comparable. Here is an example: */
+        int x = 1;
+        //x += "2"; //will not compile
+
     }
 }
