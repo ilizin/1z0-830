@@ -31,6 +31,7 @@ public class LambdaExpressionSyntax {
     public static void main(String[] args) {
 
         System.out.println();
+        System.out.println("*** PART 1 ***");
         /* If a lambda expression takes no parameters, the parameter part of the expression must have an empty set
            of parentheses, i.e., ( ) */
         LambdaType lambda1 = () -> true; // Valid
@@ -38,6 +39,7 @@ public class LambdaExpressionSyntax {
         System.out.println(lambda1.test());
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         /* If a lambda expression takes exactly one parameter, the parameter name may be specified within parentheses, i.e.,
            (pName) or without the parentheses, i.e., pName. If you want to include the parameter type then you will need
            to use parentheses. */
@@ -48,6 +50,7 @@ public class LambdaExpressionSyntax {
         System.out.println(lambda2.test(2));
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* If a lambda expression takes more than one parameter, all the parameter names must be specified
            within the parentheses, i.e., ( pName1, pName2, pName3 ). Parameter types are optional.
            If you are specifying parameter types, you must specify them for all the parameters. */
@@ -58,6 +61,7 @@ public class LambdaExpressionSyntax {
         System.out.println(lambda3.test(2, 3, 4));
 
         System.out.println();
+        System.out.println("*** PART 4 ***");
         /* Java 11 has added one more way to declare the parameters. You can use the var type for declaring
            the parameters, the parentheses, are required if you are using var. */
         lambda2 = (var a) -> a * a;
@@ -68,6 +72,7 @@ public class LambdaExpressionSyntax {
         // lambda2 = (@NotNull var a) -> a * a; // Valid
 
         System.out.println();
+        System.out.println("*** PART 5 ***");
         /* Expression with or without a return value: You can simply put an expression on the right side of ->,
            if the expression has a return value, the compiler will insert a return statement on it own. You must
            not write the return keyword. */
