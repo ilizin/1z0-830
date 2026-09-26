@@ -117,9 +117,29 @@ public class CreatingStrings {
         /* Furthermore, if the result of the +=operator is a string, the type of the operand on the left must be
            something that can refer to a string, otherwise, the expression will not compile. There are only 4 such
            types other than String the super classes of String, i.e., CharSequence and Object and, the interfaces that
-           String implements, i.e., Serializable snd Comparable. Here is an example: */
+           String implements, i.e., Serializable snd Comparable.
+           Since the type of one of the operands in the above expression is String, the String concatenation behavior of
+           +=will be triggered. However, the expression will not compile because you can't assign the resulting object of
+           type String to a variable of type int.
+           Observe that if the type of the left operand is String, the type of the right operand can be anything because
+           in that case, even if the type of the right operand is not String, it will be converted to a string as per the
+           rules discussed above. */
         int x = 1;
         //x += "2"; //will not compile
 
+        /* It will compile fine and print "12". First, 1will be boxed into an Integer object, which will be assigned to m.
+           This assignment is valid because an Integer "is-a"Object. Next, the expression m += "2" will be expanded
+           to m = m + "2". Since one of the operands of + in this expression is a string, a string concatenation will
+           be performed, which will produce the string "12". This string will be assigned to m. The assignment is also
+           valid because a String is an Object */
+        Object m = 1;
+        m += "2";
+        System.out.println(m);
+
+        /* It will fail to compile because as far as the compiler is concerned, type of mis Object and type of 1is int.
+           Therefore, when m+=1 is expanded to m = m + 1, neither of the operands of +is a String! */
+        Object m2 = "Hello ";
+        // m2 += 1; // Invalid
+        System.out.println(m2);
     }
 }

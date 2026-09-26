@@ -16,7 +16,25 @@ public class BytesData {
         is being executed may be blocked for a long time and will not be available to perform other tasks.
         Although this approach is fine for many applications, it doesn't scale well. To overcome this limitation,
         Java introduced a non-blocking I/O (aka NIO) library in Java 1.4 and updated it in Java 7 (aka NIO2).
-        These classes are packaged in the java.nio package. */
+        These classes are packaged in the java.nio package.
+
+        InputStream and OutputStream are the root classes for all input and output streams respectively. They are abstract
+        and they contain most of the methods that we normally use while dealing with low level input and output.
+
+        Specialized classes such as ObjectInputStream (and its corresponding ObjectOutputStream) and BufferedInputStream
+        (and its corresponding BufferedOutputStream) do not interact with the data source (or the data sink)
+        They take an existing input stream (or an existing output stream) and build additional functionality on top of
+        those streams. That is why such streams are called "higher-level" streams.
+
+        Higher level streams do not care about where the data actually comes from or goes to. It is the job of the lower
+        level streams such as FileInputStream/FileOutputStream to
+
+        If the name of an I/O stream class reveals an actual data source or sink, it is a lower level stream and it does not
+        take an input or an output stream as an argument during instantiation. For example, FileInputStream, and
+        ByteArrayInputStream reveal their data sources (a file and a byte array respectively) and are therefore, lower level
+        streams. On the other hand, ObjectInputStream, BufferedInputStream, and DataInputStream reveal the type of the
+        data that they deal with (Object, byte buffer, and primitive data, respectively) instead of the source or the sink
+        of the data and are therefore, higher level streams.*/
     public static void main(String[] args) throws IOException {
 
         System.out.println();

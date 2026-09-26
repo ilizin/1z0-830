@@ -84,12 +84,14 @@ public class LambdaExpressionSyntax {
         // lambda2 = a -> { a + 2; }; // Invalid, must have return keyword
 
         System.out.println();
+        System.out.println("*** PART 6 ***");
         /* Similarly, an expression that doesn't return any value can also be used directly as the body of the
            lambda expression. */
         LambdaType4 lambda4 = (a, b) -> System.out.println(a + b);
         lambda4.test(3, 2);
 
         System.out.println();
+        System.out.println("*** PART 7 ***");
         /* If you have multiple lines of code, you must write them within curly braces, i.e., { }. If the expression
            is supposed to return a value, you must use a return statement to return the desired value. You can use this
            syntax even if you have just one statement in the body. Unlike lambdas with just an expression as their bodies,
