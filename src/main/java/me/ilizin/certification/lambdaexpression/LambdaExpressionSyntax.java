@@ -110,6 +110,7 @@ public class LambdaExpressionSyntax {
         lambda5.test();
 
         System.out.println();
+        System.out.println("*** PART 8 ***");
         /* The variables that you define in the variable section of a lambda expression exist in the same scope
            as which the lambda expression itself exists. This means, you cannot redefine the variables that already
            exist in that scope. */
@@ -123,6 +124,7 @@ public class LambdaExpressionSyntax {
          }
 
         System.out.println();
+        System.out.println("*** PART 9 ***");
         /* It is possible to access a variable that is in scope of the lambda expression from within the lambda
            expression's body but only if that variable is declared as final or is "effectively final".
            This rule is applicable only for local variables and not for instance or static fields. It is possible

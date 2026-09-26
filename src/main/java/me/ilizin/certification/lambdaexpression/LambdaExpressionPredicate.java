@@ -42,6 +42,7 @@ public class LambdaExpressionPredicate {
     public static void main(String[] args) {
 
         System.out.println();
+        System.out.println("*** PART 1 ***");
         /* There is no change in the code that calls showCars method. The lambda expression that we used earlier, i.e.,
            cm.showCars(c -> c.company.equals("Honda")) works for this new method as well. It works because the
            lambda expression never required us to use the name of any interface or method. Lambda expression
@@ -52,6 +53,7 @@ public class LambdaExpressionPredicate {
         System.out.println(carsByCompany);
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         /* The Predicate interface has three default methods and one static method in addition to the abstract test method.
            You will notice that these methods are basically just helpful utility methods.
            1. default Predicate<T> and(Predicate<? super T> other):
@@ -69,6 +71,7 @@ public class LambdaExpressionPredicate {
         }
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* 2. default Predicate<T> negate():
                 Returns a predicate that represents the logical negation of this predicate. */
         Predicate<Car> p = c2 -> c2.price < 20000;
@@ -76,6 +79,7 @@ public class LambdaExpressionPredicate {
         System.out.println(notP.test(c));
 
         System.out.println();
+        System.out.println("*** PART 4 ***");
         /* 3. default Predicate<T> or(Predicate<? super T> other):
                 Returns a composed predicate that represents a short-circuiting logical OR of this predicate and another. */
         Predicate<Car> isHonda = c3 -> c3.company.equals("Honda");
@@ -84,6 +88,7 @@ public class LambdaExpressionPredicate {
         System.out.println(isHondaOrToyota.test(c));
 
         System.out.println();
+        System.out.println("*** PART 5 ***");
         /* 4. static <T> Predicate<T> isEqual(Object targetRef):
                 Returns a predicate that tests if two arguments are equal according to Objects.equals(Object, Object).
               For example, normally, you would compare two Car objects using c1.equals(c2).
