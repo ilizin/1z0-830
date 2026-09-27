@@ -24,6 +24,7 @@ public class StandardFunctionalInterfaces {
     public static void main(String[] args) {
 
         System.out.println();
+        System.out.println("*** PART 1 ***");
         /* A Consumer<T> is meant to "consume" an object of type T, we want to do something with the given object.
            The functional method of the Consumer interface is named void accept(T t).
            Creating a Consumer that consumes a String, the lambda expression contains only the logic for consuming
@@ -32,6 +33,7 @@ public class StandardFunctionalInterfaces {
         strConsumer.accept("hello");
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         /* A Supplier<T> supplies an object of type T whenever invoked. Its functional method is T get() */
         Supplier<Car> carSupplier = () -> new Car("Honda", 2012, 9000.0, "HATCH");
         List<Car> cars = new ArrayList<>();
@@ -41,6 +43,7 @@ public class StandardFunctionalInterfaces {
         }
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* A Function<T, R> takes an argument of type T, performs some transformation on that argument,
            and returns the result of type R. Its functional method is R apply(T t).
            Besides the apply method, Function has two default methods, namely, andThen and compose. */
@@ -49,6 +52,7 @@ public class StandardFunctionalInterfaces {
         System.out.println(company);
 
         System.out.println();
+        System.out.println("*** PART 4 ***");
         /* A BiFunction<T,U,R> is similar to (but does not extend) Function except that it takes two arguments of type T
         and U respectively, and returns a result of type R. Its functional method is R apply(T t, U u). */
         BiFunction<Car, String, Double> costBiF = (car, city) -> car.price() * 0.01;
@@ -58,6 +62,7 @@ public class StandardFunctionalInterfaces {
         System.out.println(result);
 
         System.out.println();
+        System.out.println("*** PART 5 ***");
         /* A UnaryOperator<T> extends Function<T, T> and represents an operation on a single operand that produces a
            result of the same type as its operand. */
         UnaryOperator<Integer> flip = i -> -1 * i;
@@ -65,9 +70,10 @@ public class StandardFunctionalInterfaces {
         System.out.println(res);
 
         /* The functional interfaces described above can be used only with reference types and not with primitive types. */
-        // BiFunction<double, double, double> areaBiF2 = (a, b) -> a * b;
+        // BiFunction<double, double, double> areaBiF2 = (a, b) -> a * b; // Invalid
 
         System.out.println();
+        System.out.println("*** PART 6 ***");
         /* Iterating through a collection is very common requirement. Prior to Java 8, a common way to iterate through
            a collection was to use a regular for loop. The Collection interface actually extends java.lang.Iterable interface
            and so, it was also possible to use the enhanced for loop (aka the for-each loop) for this purpose (Java 5).
@@ -81,6 +87,7 @@ public class StandardFunctionalInterfaces {
         list.forEach(s -> System.out.println(s));
 
         System.out.println();
+        System.out.println("*** PART 7 ***");
         /* The Map interface defines a default forEach method that takes a BiConsumer instead of Consumer.
            Here is an example of how it is used to process the elements of a Map: */
         BiConsumer<String, Integer> bc = (s, i) -> System.out.println(s + " is mapped to " + i);
@@ -90,6 +97,7 @@ public class StandardFunctionalInterfaces {
         map.forEach(bc);
 
         System.out.println();
+        System.out.println("*** PART 8 ***");
         /* Another common operation performed with collections is filtering. The Collection interface has a default
            removeIf(Predicate<? super E> filter) method for this purpose. This method removes all of the elements of this
            list that satisfy the given predicate. */
@@ -100,6 +108,7 @@ public class StandardFunctionalInterfaces {
         System.out.println(iList);
 
         System.out.println();
+        System.out.println("*** PART 9 ***");
         /* A collection has no notion of order but a list does. It makes sense, therefore, that List interface has a
            default sort(Comparator<? super E> comparator) method which allows you to sort the elements of this list using
            the sorting order determined by the comparator. The java.util.Comparator interface has been around since
