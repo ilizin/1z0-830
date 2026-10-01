@@ -13,6 +13,7 @@ public class MethodReference {
     public static void main(String[] args) {
 
         System.out.println();
+        System.out.println("*** PART 1 ***");
         /* Printing all the elements of a list: It uses a lambda expression to create the accept method of the
            Consumer interface.
 
@@ -41,6 +42,7 @@ public class MethodReference {
         list.forEach(System.out::println);
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         /* Identifying the target reference - A reference that is available in the context in which the method reference
            expression is written. The compiler can get hold of the target reference from the context as well. Here is an example:
            reverse is an instance method of StringBuilder, but there is no clearly identifiable StringBuilder reference variable
@@ -56,6 +58,7 @@ public class MethodReference {
         System.out.println(sbl);
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* Identifying the arguments - The values to be passed as arguments is the most confusing part of a method reference
            because they are never specified explicitly or implicitly anywhere in a method reference expression. The compiler
            takes all of the available values in the context and passes them to the method as arguments. But for this to happen,

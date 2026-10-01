@@ -15,9 +15,9 @@ public class CreatingStrings {
         }
     }
 
-    /* In Java, a "string" is an object of class java.lang.String. It represents a series of characters.
-       String is a final class, which means it cannot be extended. It extends Object and implements java.lang.CharSequence.
-       it is such a fundamental object that Java provides special treatment to strings in terms of how they are created,
+    /* In Java, a "string" is an object of class java.lang.String and represents a series of characters.
+       String is a final class, which means it cannot be extended, but it extends Object and implements java.lang.CharSequence.
+       It is such a fundamental object that Java provides special treatment to strings in terms of how they are created,
        how they are managed, and how they are used. */
     public static void main(String[] args) throws IOException {
         /* The String class has several constructors but for the purpose of the exam, you only need to be aware of the
@@ -38,13 +38,16 @@ public class CreatingStrings {
         String word5 = new String(new char[]{'H', 'e', 'l', 'l', 'o'});
         System.out.println(word5);
 
+        System.out.println();
+        System.out.println("*** PART 2 ***");
         /* A string is composed of an array of chars. But that does not mean a string is the same as a char array.
            Therefore, you cannot apply the array indexing operator on a string. */
         String str = new String("Hello");
         //char c = str[0]; // Invalid
+        System.out.println(str.charAt(0));
 
         System.out.println();
-        System.out.println("*** PART 2 ***");
+        System.out.println("*** PART 3 ***");
         /* Strings are used so commonly in programs that creating strings using the constructor becomes too tedious.
            So, Java allows you to create a string by just specifying the contents of the string within double quotes.
            They are called single line string literals because you have to specify the complete contents of the string
@@ -55,7 +58,7 @@ public class CreatingStrings {
         End"; */
 
         System.out.println();
-        System.out.println("*** PART 3 ***");
+        System.out.println("*** PART 4 ***");
         /* The second common way of creating strings is by using the concatenation operator: +
            The + operator is overloaded in such a way that if either one of its two operands is a string, it converts the
            other operand to a string and produces a new string by joining the two. There is no restriction on the type of
@@ -93,7 +96,7 @@ public class CreatingStrings {
         // String y = obj + obj;
 
         System.out.println();
-        System.out.println("*** PART 4 ***");
+        System.out.println("*** PART 5 ***");
         /* The below code produces the following output with and without overriding toString:
            1. Printing account  - Account[A1234]
            2. Printing account  - Account@72bfaced
@@ -101,19 +104,19 @@ public class CreatingStrings {
            of the name of the class of the object, the at-sign character '@', and the unsigned hexadecimal representation
            of the hash code of the object. */
         Account a = new Account("A1234");
-        String s = "Printing account  - "+a;
+        String s = "Printing account  - " + a;
         System.out.println(s);
 
         System.out.println();
-        System.out.println("*** PART 5 ***");
-        /* In the chapter on operators, we saw that +=is a compound operator. It applies the +operator on the two
-           operands and then assigns the result back to the variable on the left side. As is the case with the +operator,
-           the string concatenation behavior of +=is triggered when the type of any one of its operands is String.
+        System.out.println("*** PART 6 ***");
+        /* In the chapter on operators, we saw that += is a compound operator. It applies the + operator on the two
+           operands and then assigns the result back to the variable on the left side. As is the case with the + operator,
+           the string concatenation behavior of += is triggered when the type of any one of its operands is String.
            Here is an example: */
         String s5 = "1";
         s5 += 2; //expanded to s5 = s5 + 2;
         System.out.println(s); //prints "12"
-        /* Furthermore, if the result of the +=operator is a string, the type of the operand on the left must be
+        /* If the result of the += operator is a string, the type of the operand on the left must be
            something that can refer to a string, otherwise, the expression will not compile. There are only 4 such
            types other than String the super classes of String, i.e., CharSequence and Object and, the interfaces that
            String implements, i.e., Serializable snd Comparable.
@@ -125,7 +128,6 @@ public class CreatingStrings {
            rules discussed above. */
         int x = 1;
         //x += "2"; //will not compile
-
         /* It will compile fine and print "12". First, 1will be boxed into an Integer object, which will be assigned to m.
            This assignment is valid because an Integer "is-a"Object. Next, the expression m += "2" will be expanded
            to m = m + "2". Since one of the operands of + in this expression is a string, a string concatenation will
@@ -134,7 +136,6 @@ public class CreatingStrings {
         Object m = 1;
         m += "2";
         System.out.println(m);
-
         /* It will fail to compile because as far as the compiler is concerned, type of mis Object and type of 1is int.
            Therefore, when m+=1 is expanded to m = m + 1, neither of the operands of +is a String! */
         Object m2 = "Hello ";
