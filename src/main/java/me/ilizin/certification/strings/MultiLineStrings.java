@@ -41,14 +41,31 @@ public class MultiLineStrings {
            new line character at the end.
 
            Indentation:
+           1.White space characters that are used to indent the text block are removed from each line. These white spaces
+           are collectively called "incidental whitespace". In the above example, <head> is indented 3 spaces from the left
+           margin. Some other lines have more spaces at the beginning but the first three of those spaces are common to
+           all the lines. These are all incidental whitespace and are removed.
+           However, any space after the incidental whitespace and before the first non-whitespace character at each line
+           is considered "essential whitespace" and is kept.
+           2.All trailing whitespace is removed and each line is terminated with a single ASCII LF character
+           (the new line character \u000A) immediately after the last non-whitespace character. Thus, even if you have
+           multiple space characters (such as spaces and tabs) at the end of a line, those will not be a part of the
+           resulting string. They will be replaced with a single new line character.
            */
         String commonHeader3 =
    """
    <head>
-      <meta charset="utf-8" />
-       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta charset="utf-8" />            
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
    </head>
    """;
         System.out.println(commonHeader3);
+        String commonHeader4 =
+                """
+      <head>
+       <meta charset="utf-8" />            
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
+         </head>    """;
+        System.out.println(commonHeader4);
     }
 }
