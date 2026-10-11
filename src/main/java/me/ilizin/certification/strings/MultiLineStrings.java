@@ -60,12 +60,57 @@ public class MultiLineStrings {
    </head>
    """;
         System.out.println(commonHeader3);
+        // All of the trailing white spaces at the end of each line is replaced by a single new line character.
         String commonHeader4 =
                 """
       <head>
-       <meta charset="utf-8" />            
+       <meta charset="utf-8" />             
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
-         </head>    """;
+         </head>    """; // This white spaces are also removed
         System.out.println(commonHeader4);
+        /* \t inserts a tab character between Hello and Tab and \n inserts a new line character after Tab. Note that escape
+           sequences are not whitespace characters themselves and are therefore, never a part of incidental or trailing
+           whitespaces. The compiler translates escape sequences to whitespace characters in the resulting string after removing
+           incidental and trailing whitespaces.
+           Their presence at the beginning or at the end of a line terminates the incidental or trailing whitespace of that line.
+           In other words, if there is a whitespace present immediately after an escape sequence at the beginning of a line
+           or immediately before an escape sequence at the end of a line, then that whitespace will be preserved in the
+           resulting string.
+           For example, if you want to have two space characters at the beginning as as well as at end of the first line
+           (i.e., immediately before Hello and immediately after Tab), then you can write the line as \s Hello\tTab \s.
+            (There is only one space character between \s and Hand between band \s.) Incidental white space ends at the
+            first \s and starts after the last \s. Therefore, the space character after the first \s and the space character
+            before the last \swill be preserved. The two \s will also be replaced by space characters in the final string,
+            resulting in two spaces at the beginning and two spaces at the end of the line.*/
+        String s = """
+                Hello\tTab\n""";
+        System.out.println(s);
+
+        String s2 = """
+                \s Hello\tTab \s\n""";
+        System.out.println(s2);
+        /* If you want to break a long string into multiple lines in the code without actually inserting a new line character
+           in the resulting string, you can do so, using a backslash (\) at the end of a line, like this:
+           Observe that there is no new line between Hello and World in the output even though there is a new line between
+           them in the code and the single space character between Hello and \is preserved while all of the whitespace
+           after the \ is removed because the \ marks the beginning of the trailing whitespace as explained above.
+           */
+        String s3 = """
+               Hello \
+               World\t""";
+        System.out.println("|"+s3+"|");//prints |Hello World    |
+
+        System.out.println();
+        System.out.println("*** PART 3 ***");
+        // String str = """Hello"""; // Invalid. New line after the opening """ is required to mark the beginning of a text block.
+        //String str = """  // Invalid. A text block must be closed with """.
+          //      Hello";
+        //String str = """ // Invalid. Since """ is a delimiter, if you want to have """ as a part of the resulting string, you have to escape at least one of the " characters.
+          //      """
+            //    """;
+        String str = """
+                \"
+                " \""" """;
+        System.out.println(str);
     }
 }
