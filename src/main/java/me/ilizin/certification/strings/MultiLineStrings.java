@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class MultiLineStrings {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         System.out.println();
         System.out.println("*** PART 1 ***");
