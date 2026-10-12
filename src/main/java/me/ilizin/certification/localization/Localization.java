@@ -15,6 +15,7 @@ public class Localization {
     public static void main(String[] args) {
 
         System.out.println();
+        System.out.println("*** PART 1 ***");
         /* A user's region (the word region and country are used interchangeably in this context) and language specific
            information is captured by the java.util.Locale class. It has several methods such as getCountry()
            and getLanguage() that return specific details of the region that it represents.
@@ -31,6 +32,7 @@ public class Localization {
         System.out.println(Locale.getDefault(Locale.Category.FORMAT));
 
         System.out.println();
+        System.out.println("*** PART 2 ***");
         // Many applications provide the user with an option to change their default locale.
         Locale.setDefault(Locale.of("en", "US"));
         System.out.println(Locale.getDefault());
@@ -42,8 +44,14 @@ public class Localization {
         System.out.println(Locale.getDefault());
         System.out.println(Locale.getDefault(Locale.Category.DISPLAY));
         System.out.println(Locale.getDefault(Locale.Category.FORMAT));
+        Locale.setDefault(Locale.Category.FORMAT, Locale.of("ch", "CH"));
+        Locale.setDefault(Locale.Category.DISPLAY, Locale.of("de", "DE"));
+        System.out.println(Locale.getDefault());
+        System.out.println(Locale.getDefault(Locale.Category.DISPLAY));
+        System.out.println(Locale.getDefault(Locale.Category.FORMAT));
 
         System.out.println();
+        System.out.println("*** PART 3 ***");
         /* A Locale object can be created using Locale.Builder or using overloaded static factory methods of  the Locale class.
            Locale's constructors are deprecated and can be ignored. */
         Locale enUs = new Locale.Builder().setLanguage("en").setRegion("US").build();
@@ -54,6 +62,7 @@ public class Localization {
         System.out.println(hiIn);
 
         System.out.println();
+        System.out.println("*** PART 4 ***");
         /* Locale also defines several public static constants for countries and languages.
            Observe that Builder's has a setRegion (and not setCountry) method but this API treats region and country
            as the same but may not always have values for all of the details of the location that it represents.
@@ -69,14 +78,17 @@ public class Localization {
         System.out.println(l2.getLanguage() + " - " + l2.getCountry());
 
         System.out.println();
+        System.out.println("*** PART 5 ***");
         /* Locale.of (or new Locale) accepts any string for language and country codes without checking if they are
            Java does not verify your made-up codes against official standards like ISO 639 or ISO 3166 */
         l1 = new Locale.Builder().setLanguage("zz").setRegion("ZZ").build();
         System.out.println(l1);
         l1 = Locale.of("uu", "UU");
         System.out.println(l1);
+        System.out.println(new Locale("pp", "PP"));
 
         System.out.println();
+        System.out.println("*** PART 6 ***");
         /* Locale overrides the toString method to return a string representation of the Locale. As per JavaDoc,
            it returns language + "_" + country + "_" + (variant + "_#" | "#") + script + "_" + extensions.
            Language is always lower case, country is always upper case, script is always title case (a style of
@@ -84,5 +96,7 @@ public class Localization {
            are always lower case. */
         System.out.println(Locale.GERMANY);
         System.out.println(Locale.FRANCE);
+        Locale withScript = new Locale.Builder().setLanguage("en").setRegion("US").setScript("Latn").build();
+        System.out.println(withScript); // en_US_#Latn
     }
 }
